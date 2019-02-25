@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public bool driving = false;
+    public Text message;
+    public bool holdingObject;
     
     // Start is called before the first frame update
     void Start()

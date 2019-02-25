@@ -8,8 +8,8 @@ public class Player_Controller : MonoBehaviour
     public Camera cam;
     private float pitch; //mouse up/down
     private float yaw;//mouse left/right
-    private float fpForback; //inputfloat w/s
-    private float fpStrafe;//inputfloat a/d
+    public float fpForback; //inputfloat w/s
+    public float fpStrafe;//inputfloat a/d
     private Vector3 inputVelocity; //cumilative vel to move character
     public float velocityMod; //veloctiy timer this modifier
     public float sensX;
