@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="ComputerManager.cs" t="Include" />
           <e p="ComputerStart.cs" t="Include" />
+          <e p="Cutter.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="PickUpScript.cs" t="Include" />
           <e p="Player_Controller.cs" t="Include" />

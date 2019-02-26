@@ -7,7 +7,10 @@ public class PickUpScript : MonoBehaviour
     public GameManager gM;
     public GameObject gO;
     public Rigidbody rB;
-    public GameObject player;
+    public GameObject objectPlaceholder;
+    public bool rotated = false;
+    public Vector3 position;
+    
 
     public bool holding = false;
     // Start is called before the first frame update
@@ -15,6 +18,10 @@ public class PickUpScript : MonoBehaviour
     private void Start()
     {
         rB = gO.GetComponent<Rigidbody>();
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        objectPlaceholder = GameObject.FindWithTag("Item");
+        
+
     }
 
     private void OnMouseOver()
@@ -29,25 +36,49 @@ public class PickUpScript : MonoBehaviour
             {
                 if (holding == false)
                 {
-                    gO.transform.parent = player.transform;
-                    gM.message.text = ("Press E to Drop");
-                    rB.useGravity = false;
-                    gM.holdingObject = true;
+                    
                     holding = true;
+                    gM.message.text = ("holding");
 
                 }
                 else
                 {
-                    gO.transform.parent = null;
-                    gM.message.text = ("");
-                    rB.useGravity = true;
-                    gM.holdingObject = false;
+                    gM.message.text = ("dropped");
                     holding = false;
                 }
             
             }
         }
         
+    }
+
+    private void Update()
+    {
+        if (holding == true)
+        {
+            position = objectPlaceholder.transform.position;
+            gO.transform.position = position;
+            gM.message.text = ("Press E to Drop");
+            rB.useGravity = false;
+            gM.holdingObject = true;
+            if (gO.tag == "Rotate" && rotated == false)
+            {
+                //gO.transform.Rotate(0,0,90);
+                //rotated = true;
+                //Debug.Log("Rotated");
+            }
+        }
+        else
+        {
+            rB.useGravity = true;
+            gM.holdingObject = false;
+            if (gO.tag == "Rotate" && rotated == true)
+            {
+               // gO.transform.Rotate(0,0,0);
+                //rotated = false;
+                //Debug.Log("Not Rotated");
+            }
+        }
     }
 
     private void OnMouseExit()

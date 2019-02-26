@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3861885942346608809}
   m_Layer: 0
   m_Name: WoodBlock
-  m_TagString: Untagged
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,5 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
   gO: {fileID: 6182769211503687714}
+  rB: {fileID: 0}
   player: {fileID: 0}
+  objectPlaceholder: {fileID: 0}
+  rotated: 0
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
   holding: 0
