@@ -20,7 +20,6 @@ public class PickUpScript : MonoBehaviour
         rB = gO.GetComponent<Rigidbody>();
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         objectPlaceholder = GameObject.FindWithTag("Item");
-        
 
     }
 
@@ -38,12 +37,10 @@ public class PickUpScript : MonoBehaviour
                 {
                     
                     holding = true;
-                    gM.message.text = ("holding");
 
                 }
                 else
                 {
-                    gM.message.text = ("dropped");
                     holding = false;
                 }
             
@@ -61,23 +58,15 @@ public class PickUpScript : MonoBehaviour
             gM.message.text = ("Press E to Drop");
             rB.useGravity = false;
             gM.holdingObject = true;
-            if (gO.tag == "Rotate" && rotated == false)
-            {
-                //gO.transform.Rotate(0,0,90);
-                //rotated = true;
-                //Debug.Log("Rotated");
-            }
+            rB.constraints = RigidbodyConstraints.FreezeRotation;
+
         }
         else
         {
             rB.useGravity = true;
             gM.holdingObject = false;
-            if (gO.tag == "Rotate" && rotated == true)
-            {
-               // gO.transform.Rotate(0,0,0);
-                //rotated = false;
-                //Debug.Log("Not Rotated");
-            }
+            rB.constraints = RigidbodyConstraints.None;
+            gM.message.text = ("");
         }
     }
 

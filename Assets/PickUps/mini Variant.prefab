@@ -15,11 +15,9 @@ MonoBehaviour:
   gM: {fileID: 0}
   gO: {fileID: 0}
   rB: {fileID: 0}
-  player: {fileID: 0}
   objectPlaceholder: {fileID: 0}
   rotated: 0
   position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
   holding: 0
 --- !u!1001 &3956085938707324346
 PrefabInstance:
@@ -32,6 +30,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mini Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182769211503687714, guid: 0adbef34f7ccb5e4ab833ab1dce326d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6182769211503687719, guid: 0adbef34f7ccb5e4ab833ab1dce326d7,
         type: 3}
