@@ -5,7 +5,8 @@ using UnityEngine;
 public class Cutter : MonoBehaviour
 {
     public GameObject smallCube;
-    public Quaternion roation;
+    public GameObject miniCube;
+    public Quaternion rotation;
     public Vector3 position;
 
     public string tag;
@@ -25,14 +26,12 @@ public class Cutter : MonoBehaviour
     {
         if (other.gameObject.tag == "Cube")
         {
-            roation = other.transform.rotation;
+            rotation = other.transform.rotation;
             position = other.transform.position;
-            Instantiate(smallCube, position, roation);
-            Instantiate(smallCube, position, roation);
-            Instantiate(smallCube, position, roation);
-            Instantiate(smallCube, position, roation);
-            //Instantiate(smallCube, position, roation);
-            //Instantiate(smallCube, position, roation);
+            Instantiate(smallCube, position, rotation);
+            Instantiate(smallCube, position, rotation);
+            Instantiate(smallCube, position, rotation);
+            Instantiate(smallCube, position, rotation);
             Destroy(other.gameObject);
         }
         

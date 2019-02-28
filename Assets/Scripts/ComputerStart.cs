@@ -13,7 +13,7 @@ public class ComputerStart : MonoBehaviour
     private void Start()
     {
     }
-
+    /*
     private void OnMouseOver()
     {
         gM.message.text = ("Press E to turn on");
@@ -26,6 +26,7 @@ public class ComputerStart : MonoBehaviour
 
     private void OnMouseExit()
     {
-        gM.message.text = ("");
+       gM.message.text = ("");
     }
+    */
 }

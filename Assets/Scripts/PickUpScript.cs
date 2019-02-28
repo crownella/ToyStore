@@ -5,11 +5,12 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     public GameManager gM;
-    public GameObject gO;
     public Rigidbody rB;
     public GameObject objectPlaceholder;
     public bool rotated = false;
     public Vector3 position;
+    public CraftingStation cS;
+    public bool onTable = false;
     
 
     public bool holding = false;
@@ -17,13 +18,13 @@ public class PickUpScript : MonoBehaviour
 
     private void Start()
     {
-        rB = gO.GetComponent<Rigidbody>();
+        rB = GetComponent<Rigidbody>();
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         objectPlaceholder = GameObject.FindWithTag("Item");
 
     }
 
-    private void OnMouseOver()
+   /* private void OnMouseOver()
     {
         if (gM.holdingObject == false)
         {
@@ -48,30 +49,48 @@ public class PickUpScript : MonoBehaviour
         }
         
     }
-
+  */
     private void Update()
     {
         if (holding == true)
         {
-            position = objectPlaceholder.transform.position;
-            gO.transform.position = position;
-            gM.message.text = ("Press E to Drop");
+            //position = objectPlaceholder.transform.position;
+            transform.SetParent(objectPlaceholder.transform);
             rB.useGravity = false;
             gM.holdingObject = true;
+            rB.isKinematic = true;
             rB.constraints = RigidbodyConstraints.FreezeRotation;
+            rB.mass = 0;
 
         }
         else
         {
+            transform.SetParent(null);
             rB.useGravity = true;
             gM.holdingObject = false;
+            rB.isKinematic = false;
             rB.constraints = RigidbodyConstraints.None;
-            gM.message.text = ("");
+            rB.mass = 1;
         }
     }
 
-    private void OnMouseExit()
+    private void OnCollisionEnter(Collision other)
     {
-        gM.message.text = ("");
+        if (other.transform.tag == "Craft" && onTable == false)
+        {
+            cS = other.transform.GetComponent<CraftingStation>();
+            cS.AddtoList(this.gameObject);
+            onTable = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.transform.tag == "Craft" && onTable == true)
+        {
+            cS = other.transform.GetComponent<CraftingStation>();
+            cS.RemoveItem(this.gameObject);
+            onTable = false;
+        }
     }
 }

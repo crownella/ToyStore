@@ -9,6 +9,8 @@ public class RayCaster : MonoBehaviour
     public Transform placeHolder;
     public float placementMod = .1f;
     public Transform objectPosition;
+    public GameManager gM;
+    public PickUpScript pUS;
     
     
 
@@ -35,34 +37,34 @@ public class RayCaster : MonoBehaviour
         }
         */
 
-        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ObjectRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        Debug.DrawRay(mouseRay.origin, mouseRay.direction * mouseRayDis);
+        //Debug.DrawRay(ObjectRay.origin, ObjectRay.direction * rayDis);
         
         //endOfRay = new Vector3(mouseRay.direction.x, mouseRay.direction.y, mouseRay.direction.z);
 
-        RaycastHit mouseHit;
+        RaycastHit objectHit;
 
-        if (Physics.Raycast(mouseRay.origin, mouseRay.direction, out mouseHit, mouseRayDis))
+        if (Physics.Raycast(ObjectRay.origin, ObjectRay.direction, out objectHit, rayDis))
         {
 
-            if (mouseHit.transform.tag == "Surface")
+            if (objectHit.transform.tag == "Surface")
             {
-                placeHolder.transform.position = new Vector3(mouseHit.point.x,mouseHit.point.y + placementMod,mouseHit.point.z);
+                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y + placementMod,objectHit.point.z);
                 
-            }else if(mouseHit.transform.tag == "WallNorth")
+            }else if(objectHit.transform.tag == "WallNorth")
             {
-                placeHolder.transform.position = new Vector3(mouseHit.point.x + placementMod,mouseHit.point.y,mouseHit.point.z);
+                placeHolder.transform.position = new Vector3(objectHit.point.x + placementMod,objectHit.point.y,objectHit.point.z);
             }
-            else if(mouseHit.transform.tag == "WallSouth")
+            else if(objectHit.transform.tag == "WallSouth")
             {
-                placeHolder.transform.position = new Vector3(mouseHit.point.x - placementMod,mouseHit.point.y,mouseHit.point.z);
-            }else if(mouseHit.transform.tag == "WallWest")
+                placeHolder.transform.position = new Vector3(objectHit.point.x - placementMod,objectHit.point.y,objectHit.point.z);
+            }else if(objectHit.transform.tag == "WallWest")
             {
-                placeHolder.transform.position = new Vector3(mouseHit.point.x,mouseHit.point.y,mouseHit.point.z + placementMod);
-            }else if(mouseHit.transform.tag == "WallEast")
+                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y,objectHit.point.z + placementMod);
+            }else if(objectHit.transform.tag == "WallEast")
             {
-                placeHolder.transform.position = new Vector3(mouseHit.point.x,mouseHit.point.y,mouseHit.point.z - placementMod);
+                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y,objectHit.point.z - placementMod);
             }
         }
         else
@@ -75,7 +77,48 @@ public class RayCaster : MonoBehaviour
             //Transform newCube = Instantiate(cube, cube.transform.position, Quaternion.Euler(0,0,0)); //spawns cube when u click moue at where ever the cube is
         }
         
+        Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        //mouseRay.direction.position
+        Debug.DrawRay(MouseRay.origin, MouseRay.direction * mouseRayDis);
+
+        RaycastHit mouseHit;
+        
+        if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
+        {
+            
+            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube")
+            {
+                pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                if (pUS.holding == false)
+                {
+                    gM.message.text = ("Click To Pick Up");
+                }
+                else
+                {
+                    gM.message.text = ("Click To Drop");
+                }
+                
+                if (Input.GetMouseButtonDown(0))
+                {
+                    
+                    if (pUS.holding == false)
+                    {
+                        pUS.holding = true;
+                    }
+                    else
+                    {
+                        pUS.holding = false;
+                    }
+                   
+                }
+            }else
+            {
+                gM.message.text = ("");
+            }
+            
+
+           
+        }
+
     }
 }

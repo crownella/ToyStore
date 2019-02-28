@@ -12,6 +12,10 @@ TagManager:
   - WallSouth
   - WallEast
   - WallWest
+  - MiniCube
+  - DeliveryNoti
+  - SmallCube
+  - Craft
   layers:
   - Default
   - TransparentFX
