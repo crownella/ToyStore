@@ -7,6 +7,11 @@ TagManager:
   - Rotate
   - Cube
   - Item
+  - Surface
+  - WallNorth
+  - WallSouth
+  - WallEast
+  - WallWest
   layers:
   - Default
   - TransparentFX
