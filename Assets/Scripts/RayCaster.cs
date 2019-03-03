@@ -12,6 +12,11 @@ public class RayCaster : MonoBehaviour
     public GameManager gM;
     public PickUpScript pUS;
     public Cutter Cutter;
+    public GameObject emptyPackage;
+    public GameObject closedPackage;
+    public Transform packageSpawn;
+    public PackageManager pM;
+    public inPackageManager iPM;
     
     
 
@@ -87,7 +92,7 @@ public class RayCaster : MonoBehaviour
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
             
-            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube")
+            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
             {
                 pUS = mouseHit.transform.GetComponent<PickUpScript>();
                 if (pUS.holding == false)
@@ -155,6 +160,47 @@ public class RayCaster : MonoBehaviour
                     gM.OpenPackage(mouseHit.transform.gameObject);
                 } 
                 
+            }else if(mouseHit.transform.tag == "EmptyPackage")
+            {
+                iPM = mouseHit.transform.GetComponent<inPackageManager>();
+                pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                if (pUS.holding == false)
+                {
+                    gM.message.text = ("Click To Pick Up, Press E to Close");
+                }
+                else
+                {
+                    gM.message.text = ("Click To Drop");
+                }
+                
+                if (Input.GetMouseButtonDown(0))
+                {
+                    
+                    if (pUS.holding == false)
+                    {
+                        pUS.holding = true;
+                    }
+                    else
+                    {
+                        pUS.holding = false;
+                    }
+                   
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pM = Instantiate(closedPackage, mouseHit.transform.position, mouseHit.transform.rotation).GetComponent<PackageManager>();
+                    pM.GetContents(iPM);
+                    Destroy(mouseHit.transform.gameObject);
+                } 
+            }else if(mouseHit.transform.tag == "BoxStack")
+            {
+                gM.message.text = ("Click To Pick Up");
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    pUS = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<PickUpScript>();
+                } 
             }else
             {
                 gM.message.text = ("");

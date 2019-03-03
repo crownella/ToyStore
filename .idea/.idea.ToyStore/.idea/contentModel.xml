@@ -13,10 +13,14 @@
           <e p="Cutter.cs" t="Include" />
           <e p="CutterButton.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="PackageScript.cs" t="Include" />
+          <e p="inPackageManager.cs" t="Include" />
+          <e p="OrderManager.cs" t="Include" />
+          <e p="OutBelt.cs" t="Include" />
+          <e p="PackageManager.cs" t="Include" />
           <e p="PickUpScript.cs" t="Include" />
           <e p="Player_Controller.cs" t="Include" />
           <e p="RayCaster.cs" t="Include" />
+          <e p="Trash.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

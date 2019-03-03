@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.Internal.Experimental.UIElements;
 using UnityEngine.SceneManagement;
@@ -12,15 +13,42 @@ public class GameManager : MonoBehaviour
     public GameObject CraftingMenu;
     public bool locked;
     public Transform spawn;
+    public bool computer;
 
     public GameObject cube;
     
+    //ordersystem
+    public Text cashValue;
+    public float cash;
+    public Text currentOrder;
+    public OrderManager oM;
+    public string order;
+    public PackageManager pM;
+    
+    //time
+    public int day;
+    public int hours;
+    public int minutes;
+    public int seconds;
+    public Text dayT;
+    public Text hoursT;
+    public Text minutesT;
+    public Text secondsT;
+
+    public int timer;
+    public int timerMod;
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
         CraftingMenu.SetActive(false);
         locked = true;
+        cash = 20.00f;
+        day = 1;
+        hours = 12;
+        minutes = 0;
+        seconds = 0;
 
 
     }
@@ -28,6 +56,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "Computer")
+        {
+            computer = true;
+            locked = false;
+        }
+        else
+        {
+            computer = false;
+        }
         if(locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -36,7 +73,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
         //message.text = ("Test");
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && computer == false)
         {
             if (CraftingMenu.activeSelf == true)
             {
@@ -49,14 +86,53 @@ public class GameManager : MonoBehaviour
                 locked = false;
             }
         }
+
+        cashValue.text = cash.ToString();
+        order = GetOrderName();
+        currentOrder.text = order;
+
+        if (timer >= timerMod)
+        {
+            Clock();
+            timer = 0;
+           
+        }
     }
 
     public void OpenPackage(GameObject Package)
     {
+        pM = Package.GetComponent<PackageManager>();
         spawn = Package.transform;
         Destroy(Package);
         Instantiate(cube, spawn.position, spawn.rotation);
         Instantiate(cube, spawn.position, spawn.rotation);
         Instantiate(cube, spawn.position, spawn.rotation);
+    }
+
+    public string GetOrderName()
+    {
+        return ("name");
+    }
+
+    public void Clock()
+    {
+        if (hours == 25)
+        {
+            hours = 0;
+            day += 1;
+        }
+        if (minutes == 61)
+        {
+            minutes = 0;
+            hours += 1;
+        }
+
+        if (seconds == 61)
+        {
+            seconds = 0;
+            minutes += 1;
+        }
+
+        seconds += 1;
     }
 }

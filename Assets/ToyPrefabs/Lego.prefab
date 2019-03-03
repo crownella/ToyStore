@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 7850000300479504370}
   m_Layer: 0
   m_Name: Lego
-  m_TagString: SmallCube
+  m_TagString: Lego
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,6 +300,8 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   cS: {fileID: 0}
   onTable: 0
+  inPackage: 0
+  iPM: {fileID: 0}
   holding: 0
 --- !u!54 &7850000300479504370
 Rigidbody:

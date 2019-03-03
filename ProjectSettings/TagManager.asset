@@ -19,6 +19,11 @@ TagManager:
   - SawButtonOff
   - SawButtonOn
   - Package
+  - EmptyPackage
+  - BoxStack
+  - TopFlap
+  - Block
+  - Lego
   layers:
   - Default
   - TransparentFX

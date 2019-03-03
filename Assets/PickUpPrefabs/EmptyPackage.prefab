@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 3315768526100445340}
   - component: {fileID: 5458334941268035795}
   - component: {fileID: 1630067145452979449}
-  - component: {fileID: 1764379274706268822}
   m_Layer: 0
   m_Name: Package (2)
-  m_TagString: Untagged
+  m_TagString: EmptyPackage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,22 +91,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1764379274706268822
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106343188681425373}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1746562172905387771
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,10 +103,9 @@ GameObject:
   - component: {fileID: 4345349408212352543}
   - component: {fileID: 6064141047817511710}
   - component: {fileID: 962353518119744351}
-  - component: {fileID: 2207761158089884682}
   m_Layer: 0
   m_Name: TopFlap
-  m_TagString: Untagged
+  m_TagString: TopFlap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,22 +182,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2207761158089884682
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746562172905387771}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2100101999071226613
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,9 +195,11 @@ GameObject:
   - component: {fileID: 2100101999071226610}
   - component: {fileID: 2100101999071226609}
   - component: {fileID: 2100101999071226615}
+  - component: {fileID: 8871938583388538311}
+  - component: {fileID: 2802274600439722380}
   m_Layer: 0
   m_Name: EmptyPackage
-  m_TagString: Untagged
+  m_TagString: EmptyPackage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,8 +296,40 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8871938583388538311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100101999071226613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rB: {fileID: 0}
+  objectPlaceholder: {fileID: 0}
+  rotated: 0
+  position: {x: 0, y: 0, z: 0}
+  cS: {fileID: 0}
+  onTable: 0
+  holding: 0
+--- !u!114 &2802274600439722380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100101999071226613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f389c464f923614e824d09da2beeae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2513349317571407851
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,10 +342,9 @@ GameObject:
   - component: {fileID: 6132800687637399492}
   - component: {fileID: 1746924400910781672}
   - component: {fileID: 1782199675899828701}
-  - component: {fileID: 4761522006600392495}
   m_Layer: 0
   m_Name: TopFlap2
-  m_TagString: Untagged
+  m_TagString: TopFlap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -422,22 +421,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4761522006600392495
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513349317571407851}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3828395413888341970
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,10 +433,9 @@ GameObject:
   - component: {fileID: 8010130694785174365}
   - component: {fileID: 8058348316398863531}
   - component: {fileID: 7620693617246474097}
-  - component: {fileID: 4110102436946143477}
   m_Layer: 0
   m_Name: Package (4)
-  m_TagString: Untagged
+  m_TagString: EmptyPackage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -530,22 +512,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4110102436946143477
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828395413888341970}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3842241795848537802
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,10 +524,9 @@ GameObject:
   - component: {fileID: 3842241795848537804}
   - component: {fileID: 3842241795848537805}
   - component: {fileID: 3842241795848537806}
-  - component: {fileID: 3842241795848537800}
   m_Layer: 0
   m_Name: Package (1)
-  m_TagString: Untagged
+  m_TagString: EmptyPackage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,22 +603,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3842241795848537800
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3842241795848537802}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4780071950628920291
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,10 +615,9 @@ GameObject:
   - component: {fileID: 3741927140310888437}
   - component: {fileID: 1962910564291293386}
   - component: {fileID: 4771307971894311142}
-  - component: {fileID: 6643441443255235175}
   m_Layer: 0
   m_Name: Package (3)
-  m_TagString: Untagged
+  m_TagString: EmptyPackage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,19 +694,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6643441443255235175
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4780071950628920291}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

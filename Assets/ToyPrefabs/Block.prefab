@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 246259722118213542}
   m_Layer: 0
   m_Name: Block
-  m_TagString: SmallCube
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,8 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   cS: {fileID: 0}
   onTable: 0
+  inPackage: 0
+  iPM: {fileID: 0}
   holding: 0
 --- !u!54 &246259722118213542
 Rigidbody:
