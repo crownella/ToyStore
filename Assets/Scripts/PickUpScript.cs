@@ -21,6 +21,7 @@ public class PickUpScript : MonoBehaviour
         rB = GetComponent<Rigidbody>();
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         objectPlaceholder = GameObject.FindWithTag("Item");
+        cS = GameObject.FindWithTag("Craft").GetComponent<CraftingStation>();
 
     }
 

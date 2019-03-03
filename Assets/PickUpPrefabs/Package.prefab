@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 5442122350512321191}
   - component: {fileID: 5442122350512321188}
   - component: {fileID: 5442122350512321189}
+  - component: {fileID: 3239220389321060683}
   - component: {fileID: 5442122350512321186}
   m_Layer: 0
   m_Name: Package
-  m_TagString: Untagged
+  m_TagString: Package
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +106,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660a998f81da8e9488aacfa8769ab694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3239220389321060683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442122350512321184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  rB: {fileID: 0}
+  objectPlaceholder: {fileID: 0}
+  rotated: 0
+  position: {x: 0, y: 0, z: 0}
+  cS: {fileID: 0}
+  onTable: 0
+  holding: 0
 --- !u!54 &5442122350512321186
 Rigidbody:
   m_ObjectHideFlags: 0

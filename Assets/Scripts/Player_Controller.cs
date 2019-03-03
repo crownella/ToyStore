@@ -19,8 +19,7 @@ public class Player_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        
     }
 
     // Update is called once per frame

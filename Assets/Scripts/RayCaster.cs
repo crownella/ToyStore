@@ -11,6 +11,7 @@ public class RayCaster : MonoBehaviour
     public Transform objectPosition;
     public GameManager gM;
     public PickUpScript pUS;
+    public Cutter Cutter;
     
     
 
@@ -86,7 +87,7 @@ public class RayCaster : MonoBehaviour
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
             
-            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube")
+            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube")
             {
                 pUS = mouseHit.transform.GetComponent<PickUpScript>();
                 if (pUS.holding == false)
@@ -111,6 +112,49 @@ public class RayCaster : MonoBehaviour
                     }
                    
                 }
+            }else if(mouseHit.transform.tag == "SawButtonOff")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Cutter.TurnOnSaw();
+                } 
+            }else if(mouseHit.transform.tag == "SawButtonOn")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Cutter.TurnOffSaw();
+                } 
+                
+            }else if(mouseHit.transform.tag == "Package")
+            {
+                pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                if (pUS.holding == false)
+                {
+                    gM.message.text = ("Click To Pick Up, Press E to Open");
+                }
+                else
+                {
+                    gM.message.text = ("Click To Drop");
+                }
+                
+                if (Input.GetMouseButtonDown(0))
+                {
+                    
+                    if (pUS.holding == false)
+                    {
+                        pUS.holding = true;
+                    }
+                    else
+                    {
+                        pUS.holding = false;
+                    }
+                   
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    gM.OpenPackage(mouseHit.transform.gameObject);
+                } 
+                
             }else
             {
                 gM.message.text = ("");
