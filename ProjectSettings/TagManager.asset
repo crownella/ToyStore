@@ -16,6 +16,9 @@ TagManager:
   - DeliveryNoti
   - SmallCube
   - Craft
+  - SawButtonOff
+  - SawButtonOn
+  - Package
   layers:
   - Default
   - TransparentFX
