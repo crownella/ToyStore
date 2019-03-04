@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PackageManager : MonoBehaviour
 {
-    List<GameObject> itemsInPackage = new List<GameObject>();
+    public List<GameObject> itemsInPackage = new List<GameObject>();
     
     // Start is called before the first frame update
     void Start()

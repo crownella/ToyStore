@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OrderManager : MonoBehaviour
 {
-    public int orderNumber;
+    public int currentOrderNumber;
     public bool orderActive;
     public bool orderCompleted;
     public int ordersCompleted;
@@ -14,6 +14,9 @@ public class OrderManager : MonoBehaviour
     public Text customerName;
     public Text shippingLocation;
     public Text text;
+
+    public GameObject Lego;
+    public GameObject Block;
     public class Order
     {
         
@@ -22,38 +25,73 @@ public class OrderManager : MonoBehaviour
         public string OrderText; 
         public string OrderName;
         public string OrderPay;
+        public int OrderNumber;
 
-        public Order(string cN, string sl, string oT, string oN, string oP)
+        public Order(string cN, string sl, string oT, string oN, string oP, int oNN)
         {
             cN = CustomerName;
             sl = ShippingLocation;
             oT = OrderText;
             oN = OrderName;
             oP = OrderPay;
+            oNN = OrderNumber;
         }
     }
     List<Order> allOrders = new List<Order>();
-    List<Order> activeOrders = new List<Order>();
+    List<Order> receivedOrders = new List<Order>();
     List<Order> completedOrders = new List<Order>();
     public Order activeOrder;
     
     
     //make orders
-    
-    public Order order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("6$"));
-    public Order order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("4$"));
+    public List<GameObject> order1List = new List<GameObject>();
+    public List<GameObject> order2List = new List<GameObject>();
+    public Order order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("6$"), 1);
+    public Order order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("4$"), 2);
     
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
+        //make master order list
         allOrders.Add(order1);
         allOrders.Add(order2);
+        
+        //make lists for every order
+        order1List.Add(Block);
+        order1List.Add(Block);
+        order1List.Add(Block);
+        
+        order2List.Add(Lego);
+        order2List.Add(Lego);
+
+        activeOrder = order1;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public List<GameObject> GetOrderList(int oN)
+    {
+        if (oN == 1)
+        {
+            return order1List;
+        }else if (oN == 2)
+        {
+            return order2List;
+        }else
+        {
+            return null;
+        }
+    }
+
+    public string ReturnOrderName()
+    {
+        //print(activeOrder);
+        return activeOrder.OrderName;
     }
 }

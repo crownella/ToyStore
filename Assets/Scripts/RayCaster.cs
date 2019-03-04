@@ -190,6 +190,10 @@ public class RayCaster : MonoBehaviour
                 {
                     pM = Instantiate(closedPackage, mouseHit.transform.position, mouseHit.transform.rotation).GetComponent<PackageManager>();
                     pM.GetContents(iPM);
+                    for(int i = 0; i < iPM.inPackage.Count; i++)
+                    {
+                        iPM.inPackage[i].gameObject.SetActive(false);
+                    }
                     Destroy(mouseHit.transform.gameObject);
                 } 
             }else if(mouseHit.transform.tag == "BoxStack")

@@ -88,8 +88,8 @@ public class GameManager : MonoBehaviour
         }
 
         cashValue.text = cash.ToString();
-        order = GetOrderName();
-        currentOrder.text = order;
+        order = oM.ReturnOrderName();
+        //currentOrder.text = order;
 
         if (timer >= timerMod)
         {
@@ -109,10 +109,6 @@ public class GameManager : MonoBehaviour
         Instantiate(cube, spawn.position, spawn.rotation);
     }
 
-    public string GetOrderName()
-    {
-        return ("name");
-    }
 
     public void Clock()
     {

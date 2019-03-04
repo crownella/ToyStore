@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CraftingStation : MonoBehaviour
 {
-    List<GameObject> itemsList = new List<GameObject>();
+    public List<GameObject> itemsList = new List<GameObject>();
 
     public int cubes;
     public int tmpCubes;

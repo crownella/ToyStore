@@ -16,6 +16,7 @@
           <e p="inPackageManager.cs" t="Include" />
           <e p="OrderManager.cs" t="Include" />
           <e p="OutBelt.cs" t="Include" />
+          <e p="PackageCheck.cs" t="Include" />
           <e p="PackageManager.cs" t="Include" />
           <e p="PickUpScript.cs" t="Include" />
           <e p="Player_Controller.cs" t="Include" />

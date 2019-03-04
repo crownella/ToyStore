@@ -125,6 +125,8 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   cS: {fileID: 0}
   onTable: 0
+  inPackage: 0
+  iPM: {fileID: 0}
   holding: 0
 --- !u!54 &5442122350512321186
 Rigidbody:

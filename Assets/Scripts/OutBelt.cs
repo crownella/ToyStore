@@ -15,4 +15,12 @@ public class OutBelt : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.transform.tag == "Package")
+        {
+            other.transform.position += Vector3.forward * Time.deltaTime;
+        }
+    }
 }
