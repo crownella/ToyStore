@@ -34,7 +34,7 @@ public class PackageCheck : MonoBehaviour
     public void CheckPackage(GameObject package)
     {
         packageList = pM.itemsInPackage;
-        //orderList = oM.GetOrderList(oM.activeOrder.OrderNumber);
+        orderList = oM.GetOrderList(oM.activeOrder.OrderNumber);
         for (int i = 0; i <packageList.Count; i++)
         {
             for (int x = 0; x <orderList.Count; x++)
@@ -54,6 +54,7 @@ public class PackageCheck : MonoBehaviour
         if (orderList.Count == 0)
         {
             packageNoti.text = "Package Accepted";
+            oM.currentOrderNumber += 1;
             oM.orderCompleted = true;
             Destroy(package);
             for(int i = 0; i < packageList.Count; i++)

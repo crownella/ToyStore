@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool locked;
     public Transform spawn;
     public bool computer;
+    public bool crafting;
 
     public GameObject cube;
     
@@ -75,21 +76,28 @@ public class GameManager : MonoBehaviour
         //message.text = ("Test");
         if (Input.GetKeyDown(KeyCode.C) && computer == false)
         {
-            if (CraftingMenu.activeSelf == true)
+            if (crafting)
             {
-                CraftingMenu.SetActive(false);
-                locked = true;
+                crafting = false;
             }
             else
             {
-                CraftingMenu.SetActive(true);
-                locked = false;
+                crafting = true;
             }
+        }
+
+        if(crafting)
+        {
+            CraftingMenu.SetActive(true);
+        }
+        else
+        {
+            CraftingMenu.SetActive(false);
         }
 
         cashValue.text = cash.ToString();
         order = oM.ReturnOrderName();
-        //currentOrder.text = order;
+        currentOrder.text = order;
 
         if (timer >= timerMod)
         {

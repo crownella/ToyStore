@@ -14,6 +14,7 @@ public class OrderManager : MonoBehaviour
     public Text customerName;
     public Text shippingLocation;
     public Text text;
+    public bool gameFinished;
 
     public GameObject Lego;
     public GameObject Block;
@@ -29,12 +30,12 @@ public class OrderManager : MonoBehaviour
 
         public Order(string cN, string sl, string oT, string oN, string oP, int oNN)
         {
-            cN = CustomerName;
-            sl = ShippingLocation;
-            oT = OrderText;
-            oN = OrderName;
-            oP = OrderPay;
-            oNN = OrderNumber;
+            CustomerName = cN;
+            ShippingLocation = sl;
+            OrderText = oT;
+            OrderName = oN;
+            OrderPay = oP;
+            OrderNumber = oNN;
         }
     }
     List<Order> allOrders = new List<Order>();
@@ -46,13 +47,19 @@ public class OrderManager : MonoBehaviour
     //make orders
     public List<GameObject> order1List = new List<GameObject>();
     public List<GameObject> order2List = new List<GameObject>();
-    public Order order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("6$"), 1);
-    public Order order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("4$"), 2);
+    public Order order1;
+    public Order order2;
     
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
+        
+        //make orders
+        order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("6$"), 1);
+        order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("4$"), 2);
+        
+        
         //make master order list
         allOrders.Add(order1);
         allOrders.Add(order2);
@@ -65,14 +72,25 @@ public class OrderManager : MonoBehaviour
         order2List.Add(Lego);
         order2List.Add(Lego);
 
-        activeOrder = order1;
+        currentOrderNumber = 1;
+        gameFinished = false;
+        //activeOrder.Equals(order1);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentOrderNumber == 1)
+        {
+            activeOrder = order1;
+        }else if (currentOrderNumber == 2)
+        {
+            activeOrder = order2;
+        }else if (currentOrderNumber > 2)
+        {
+            gameFinished = true;
+        }
     }
 
     public List<GameObject> GetOrderList(int oN)
@@ -91,7 +109,13 @@ public class OrderManager : MonoBehaviour
 
     public string ReturnOrderName()
     {
-        //print(activeOrder);
-        return activeOrder.OrderName;
+        if (gameFinished)
+        {
+            return "You Won";
+        }
+        else
+        {
+            return activeOrder.OrderName;
+        }
     }
 }

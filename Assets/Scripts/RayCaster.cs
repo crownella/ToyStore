@@ -91,128 +91,126 @@ public class RayCaster : MonoBehaviour
         
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
-            
-            if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
+            if (gM.crafting == true)
             {
-                pUS = mouseHit.transform.GetComponent<PickUpScript>();
-                if (pUS.holding == false)
-                {
-                    gM.message.text = ("Click To Pick Up");
-                }
-                else
-                {
-                    gM.message.text = ("Click To Drop");
-                }
+                  if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
+               {
+                   pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                   if (pUS.holding == false)
+                   {
+                       gM.message.text = ("Click To Pick Up");
+                   }
+                   else
+                   {
+                       gM.message.text = ("Click To Drop");
+                   }
                 
-                if (Input.GetMouseButtonDown(0))
-                {
+                   if (Input.GetMouseButtonDown(0))
+                   {
                     
-                    if (pUS.holding == false)
-                    {
-                        pUS.holding = true;
-                    }
-                    else
-                    {
-                        pUS.holding = false;
-                    }
+                       if (pUS.holding == false)
+                       {
+                           pUS.holding = true;
+                       }
+                       else
+                       {
+                           pUS.holding = false;
+                       }
                    
-                }
-            }else if(mouseHit.transform.tag == "SawButtonOff")
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Cutter.TurnOnSaw();
-                } 
-            }else if(mouseHit.transform.tag == "SawButtonOn")
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Cutter.TurnOffSaw();
-                } 
+                   }
+               }else if(mouseHit.transform.tag == "SawButtonOff")
+               {
+                   if (Input.GetMouseButtonDown(0))
+                   {
+                       Cutter.TurnOnSaw();
+                   } 
+               }else if(mouseHit.transform.tag == "SawButtonOn")
+               {
+                   if (Input.GetMouseButtonDown(0))
+                   {
+                       Cutter.TurnOffSaw();
+                   } 
                 
-            }else if(mouseHit.transform.tag == "Package")
-            {
-                pUS = mouseHit.transform.GetComponent<PickUpScript>();
-                if (pUS.holding == false)
-                {
-                    gM.message.text = ("Click To Pick Up, Press E to Open");
-                }
-                else
-                {
-                    gM.message.text = ("Click To Drop");
-                }
+               }else if(mouseHit.transform.tag == "Package")
+               {
+                   pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                   if (pUS.holding == false)
+                   {
+                       gM.message.text = ("Click To Pick Up, Press E to Open");
+                   }
+                   else
+                   {
+                       gM.message.text = ("Click To Drop");
+                   }
                 
-                if (Input.GetMouseButtonDown(0))
-                {
+                   if (Input.GetMouseButtonDown(0))
+                   {
                     
-                    if (pUS.holding == false)
-                    {
-                        pUS.holding = true;
-                    }
-                    else
-                    {
-                        pUS.holding = false;
-                    }
+                       if (pUS.holding == false)
+                       {
+                           pUS.holding = true;
+                       }
+                       else
+                       {
+                           pUS.holding = false;
+                       }
                    
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    gM.OpenPackage(mouseHit.transform.gameObject);
-                } 
+                   }
+                   if (Input.GetKeyDown(KeyCode.E))
+                   {
+                       gM.OpenPackage(mouseHit.transform.gameObject);
+                   } 
                 
-            }else if(mouseHit.transform.tag == "EmptyPackage")
-            {
-                iPM = mouseHit.transform.GetComponent<inPackageManager>();
-                pUS = mouseHit.transform.GetComponent<PickUpScript>();
-                if (pUS.holding == false)
-                {
-                    gM.message.text = ("Click To Pick Up, Press E to Close");
-                }
-                else
-                {
-                    gM.message.text = ("Click To Drop");
-                }
+               }else if(mouseHit.transform.tag == "EmptyPackage")
+               {
+                   iPM = mouseHit.transform.GetComponent<inPackageManager>();
+                   pUS = mouseHit.transform.GetComponent<PickUpScript>();
+                   if (pUS.holding == false)
+                   {
+                       gM.message.text = ("Click To Pick Up, Press E to Close");
+                   }
+                   else
+                   {
+                       gM.message.text = ("Click To Drop");
+                   }
                 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    
-                    if (pUS.holding == false)
-                    {
-                        pUS.holding = true;
-                    }
-                    else
-                    {
-                        pUS.holding = false;
-                    }
+                   if (Input.GetMouseButtonDown(0))
+                   {
+                       
+                       if (pUS.holding == false)
+                       {
+                           pUS.holding = true;
+                       }
+                       else
+                       {
+                           pUS.holding = false;
+                       }
                    
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    pM = Instantiate(closedPackage, mouseHit.transform.position, mouseHit.transform.rotation).GetComponent<PackageManager>();
-                    pM.GetContents(iPM);
-                    for(int i = 0; i < iPM.inPackage.Count; i++)
-                    {
-                        iPM.inPackage[i].gameObject.SetActive(false);
-                    }
-                    Destroy(mouseHit.transform.gameObject);
-                } 
-            }else if(mouseHit.transform.tag == "BoxStack")
-            {
-                gM.message.text = ("Click To Pick Up");
+                   }
+                   if (Input.GetKeyDown(KeyCode.E))
+                   {
+                       pM = Instantiate(closedPackage, mouseHit.transform.position, mouseHit.transform.rotation).GetComponent<PackageManager>();
+                       pM.GetContents(iPM);
+                       for(int i = 0; i < iPM.inPackage.Count; i++)
+                       {
+                           iPM.inPackage[i].gameObject.SetActive(false);
+                       }
+                       Destroy(mouseHit.transform.gameObject);
+                   } 
+               }else if(mouseHit.transform.tag == "BoxStack")
+               {
+                   gM.message.text = ("Click To Pick Up");
 
-                if (Input.GetMouseButtonDown(0))
-                {
+                   if (Input.GetMouseButtonDown(0))
+                   {
 
-                    pUS = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<PickUpScript>();
-                } 
-            }else
-            {
-                gM.message.text = ("");
-            }
-            
-
-           
+                       pUS = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<PickUpScript>();
+                   } 
+               }else
+               {
+                   gM.message.text = ("");
+               } 
+            } 
         }
-
     }
 }

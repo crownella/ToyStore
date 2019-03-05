@@ -85,11 +85,25 @@ public class PickUpScript : MonoBehaviour
             cS.AddtoList(this.gameObject);
             onTable = true;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.transform.tag == "EmptyPackage" && inPackage == false)
         {
             iPM = other.transform.GetComponent<inPackageManager>();
             iPM.addItem(this.gameObject);
             inPackage = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "EmptyPackage" && inPackage == true)
+        {
+            iPM = other.transform.GetComponent<inPackageManager>();
+            iPM.removeItem(this.gameObject);
+            inPackage = false;
         }
     }
 
@@ -100,12 +114,6 @@ public class PickUpScript : MonoBehaviour
             cS = other.transform.GetComponent<CraftingStation>();
             cS.RemoveItem(this.gameObject);
             onTable = false;
-        }
-        if (other.transform.tag == "EmptyPackage" && inPackage == true)
-        {
-            iPM = other.transform.GetComponent<inPackageManager>();
-            iPM.removeItem(this.gameObject);
-            inPackage = false;
         }
     }
 }

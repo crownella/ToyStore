@@ -4186,6 +4186,7 @@ MonoBehaviour:
   locked: 0
   spawn: {fileID: 0}
   computer: 0
+  crafting: 0
   cube: {fileID: 5303783487604197402, guid: 093f8ed07bb6e2a459f5d218bfb95c05, type: 3}
   cashValue: {fileID: 71545866}
   cash: 0
@@ -6583,11 +6584,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pM: {fileID: 0}
-  oM: {fileID: 0}
+  oM: {fileID: 1763719653}
   packageList: []
   orderList: []
-  packageNoti: {fileID: 0}
-  delSpawn: {fileID: 0}
+  packageNoti: {fileID: 652424764}
+  delSpawn: {fileID: 6880224805748265124}
 --- !u!1 &1602756417
 GameObject:
   m_ObjectHideFlags: 0
@@ -6821,8 +6822,9 @@ MonoBehaviour:
   customerName: {fileID: 0}
   shippingLocation: {fileID: 0}
   text: {fileID: 0}
-  Lego: {fileID: 0}
-  Block: {fileID: 0}
+  gameFinished: 0
+  Lego: {fileID: 7850000300479504371, guid: e7f1ebd4e1b9e4645b8a4e51a53281f7, type: 3}
+  Block: {fileID: 2792868911741229662, guid: ac93cbe299a41c74fb3de1a882876d63, type: 3}
   order1List: []
   order2List: []
 --- !u!4 &1763719654
