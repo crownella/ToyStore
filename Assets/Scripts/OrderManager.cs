@@ -74,6 +74,7 @@ public class OrderManager : MonoBehaviour
 
         currentOrderNumber = 1;
         gameFinished = false;
+        activeOrder = order1;
         //activeOrder.Equals(order1);
 
     }
@@ -115,7 +116,9 @@ public class OrderManager : MonoBehaviour
         }
         else
         {
+            
             return activeOrder.OrderName;
+            
         }
     }
 }

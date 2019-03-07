@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         hours = 12;
         minutes = 0;
         seconds = 0;
+        crafting = false;
 
 
     }
@@ -89,10 +90,12 @@ public class GameManager : MonoBehaviour
         if(crafting)
         {
             CraftingMenu.SetActive(true);
+            locked = false;
         }
         else
         {
             CraftingMenu.SetActive(false);
+            locked = true;
         }
 
         cashValue.text = cash.ToString();

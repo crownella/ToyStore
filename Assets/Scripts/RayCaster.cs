@@ -91,7 +91,7 @@ public class RayCaster : MonoBehaviour
         
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
-            if (gM.crafting == true)
+            if (gM.crafting == false)
             {
                   if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
                {
