@@ -41,7 +41,7 @@ public class RayCaster : MonoBehaviour
         {
             print(myHit.rigidbody.transform.name);
         }
-        */
+        
 
         Ray ObjectRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         
@@ -82,8 +82,10 @@ public class RayCaster : MonoBehaviour
         {
             //Transform newCube = Instantiate(cube, cube.transform.position, Quaternion.Euler(0,0,0)); //spawns cube when u click moue at where ever the cube is
         }
+        */
         
-        Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray MouseRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward * mouseRayDis);
         
         Debug.DrawRay(MouseRay.origin, MouseRay.direction * mouseRayDis);
 
