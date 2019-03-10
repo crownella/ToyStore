@@ -974,7 +974,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390410636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128530734}
+        m_MethodName: OrderItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &390410636
@@ -3081,6 +3092,9 @@ MonoBehaviour:
   spawn: {fileID: 0}
   computer: 0
   cash: 0
+  cube: {fileID: 3720792772729589748, guid: 15e147ea20f39f448805a39a8d4c1ead, type: 3}
+  nails: {fileID: 8573838007148371891, guid: b57a8b90d3efd12489876db00cfbb833, type: 3}
+  gunPOw: {fileID: 8328934685464055156, guid: 2f6cfb0546b670e47b0a6b350b4f35d5, type: 3}
   day: 0
   hours: 0
   minutes: 0
@@ -3091,7 +3105,7 @@ MonoBehaviour:
   secondsT: {fileID: 0}
   timer: 0
   timerMod: 0
-  itemOrdered: 1
+  itemOrdered: 0
   orderedItems: []
 --- !u!4 &1230466673
 Transform:
@@ -4339,7 +4353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1799685974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4694,7 +4708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1903032582
 RectTransform:
   m_ObjectHideFlags: 0
