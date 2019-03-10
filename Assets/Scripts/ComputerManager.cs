@@ -166,4 +166,18 @@ public class ComputerManager : MonoBehaviour
     {
         browser = false;
     }
+
+    public void OrderItems()
+    {
+        if (gM.itemOrdered == false)
+        {
+            if (cubes == true)
+            {
+                gM.orderedItems.Add(gM.cube);   
+                gM.orderedItems.Add(gM.cube);  
+                gM.orderedItems.Add(gM.cube);
+                gM.itemOrdered = true;
+            }
+        } 
+    }
 }

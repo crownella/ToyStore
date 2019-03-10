@@ -18,7 +18,12 @@ public class MainSceneManager : MonoBehaviour
     public OrderManager oM;
     public string order;
     public PackageManager pM;
-    // Start is called before the first frame update
+
+    private GameObject _currentPackage;
+    public GameObject packageObject;
+    public Transform packageSpawn;
+    
+
     void Start()
     {
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -67,5 +72,42 @@ public class MainSceneManager : MonoBehaviour
         order = oM.ReturnOrderName();
         currentOrder.text = order;
         cashValue.text = gM.cash.ToString();
+        
+        //item ordering
+        if (gM.itemOrdered)
+        {
+            SpawnPackage();
+            gM.itemOrdered = false;
+        }
+    }
+
+    public void SpawnPackage()
+    {
+        _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
+        pM = _currentPackage.GetComponent<PackageManager>();
+        for(int i = 0; i < pM.itemsInPackage.Count; i++)
+        {
+            print("i =" + i);
+            print(pM.itemsInPackage[i].gameObject.name);
+        }
+        pM.itemsInPackage = gM.orderedItems;
+        for(int i = 0; i < pM.itemsInPackage.Count; i++)
+        {
+            print("x =" + i);
+            print(pM.itemsInPackage[i].gameObject.name);
+        }
+        gM.orderedItems.Clear();
+    }
+
+    public void OpenPackage(GameObject package)
+    {
+        print("OPenPackage");
+        pM = package.GetComponent<PackageManager>();
+        for(int i = 0; i < pM.itemsInPackage.Count; i++)
+        {
+            print(pM.itemsInPackage[i].gameObject.name);
+            Instantiate(pM.itemsInPackage[i], package.transform.position, package.transform.rotation);
+        }
+        Destroy(package);
     }
 }

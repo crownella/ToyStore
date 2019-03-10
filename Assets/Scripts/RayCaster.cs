@@ -165,7 +165,7 @@ public class RayCaster : MonoBehaviour
                    }
                    if (Input.GetKeyDown(KeyCode.E))
                    {
-                       //gM.OpenPackage(mouseHit.transform.gameObject);
+                       mM.OpenPackage(mouseHit.transform.gameObject);
                    } 
                 
                }else if(mouseHit.transform.tag == "EmptyPackage")
@@ -192,7 +192,6 @@ public class RayCaster : MonoBehaviour
                        {
                            pUS.holding = false;
                        }
-                   
                    }
                    if (Input.GetKeyDown(KeyCode.E))
                    {

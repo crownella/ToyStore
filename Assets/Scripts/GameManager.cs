@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public bool computer;
     public float cash;
 
+    public GameObject cube;
+    public GameObject nails;
+    public GameObject gunPOw;
+
+
 
     
 
@@ -32,7 +37,7 @@ public class GameManager : MonoBehaviour
     public int timer;
     public int timerMod;
 
-    public bool itemOrdered = true;
+    public bool itemOrdered = false;
     public List<GameObject> orderedItems = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -41,7 +46,7 @@ public class GameManager : MonoBehaviour
         
         
         DontDestroyOnLoad(this);
-        cash = 20.00f;
+        cash = 10.00f;
         day = 1;
         hours = 12;
         minutes = 0;
