@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RayCaster : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class RayCaster : MonoBehaviour
     public Transform packageSpawn;
     public PackageManager pM;
     public inPackageManager iPM;
+
+    public MainSceneManager mM;
     
     
 
@@ -24,7 +27,7 @@ public class RayCaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -93,18 +96,18 @@ public class RayCaster : MonoBehaviour
         
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
-            if (gM.crafting == false)
+            if (mM.crafting == false)
             {
                   if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
                {
                    pUS = mouseHit.transform.GetComponent<PickUpScript>();
                    if (pUS.holding == false)
                    {
-                       gM.message.text = ("Click To Pick Up");
+                       mM.message.text = ("Click To Pick Up");
                    }
                    else
                    {
-                       gM.message.text = ("Click To Drop");
+                       mM.message.text = ("Click To Drop");
                    }
                 
                    if (Input.GetMouseButtonDown(0))
@@ -122,12 +125,14 @@ public class RayCaster : MonoBehaviour
                    }
                }else if(mouseHit.transform.tag == "SawButtonOff")
                {
+                   mM.message.text = ("Click To Turn On");
                    if (Input.GetMouseButtonDown(0))
                    {
                        Cutter.TurnOnSaw();
                    } 
                }else if(mouseHit.transform.tag == "SawButtonOn")
                {
+                   mM.message.text = ("Click To Turn Off");
                    if (Input.GetMouseButtonDown(0))
                    {
                        Cutter.TurnOffSaw();
@@ -138,11 +143,11 @@ public class RayCaster : MonoBehaviour
                    pUS = mouseHit.transform.GetComponent<PickUpScript>();
                    if (pUS.holding == false)
                    {
-                       gM.message.text = ("Click To Pick Up, Press E to Open");
+                       mM.message.text = ("Click To Pick Up, Press E to Open");
                    }
                    else
                    {
-                       gM.message.text = ("Click To Drop");
+                       mM.message.text = ("Click To Drop");
                    }
                 
                    if (Input.GetMouseButtonDown(0))
@@ -160,7 +165,7 @@ public class RayCaster : MonoBehaviour
                    }
                    if (Input.GetKeyDown(KeyCode.E))
                    {
-                       gM.OpenPackage(mouseHit.transform.gameObject);
+                       //gM.OpenPackage(mouseHit.transform.gameObject);
                    } 
                 
                }else if(mouseHit.transform.tag == "EmptyPackage")
@@ -169,11 +174,11 @@ public class RayCaster : MonoBehaviour
                    pUS = mouseHit.transform.GetComponent<PickUpScript>();
                    if (pUS.holding == false)
                    {
-                       gM.message.text = ("Click To Pick Up, Press E to Close");
+                       mM.message.text = ("Click To Pick Up, Press E to Close");
                    }
                    else
                    {
-                       gM.message.text = ("Click To Drop");
+                       mM.message.text = ("Click To Drop");
                    }
                 
                    if (Input.GetMouseButtonDown(0))
@@ -201,18 +206,31 @@ public class RayCaster : MonoBehaviour
                    } 
                }else if(mouseHit.transform.tag == "BoxStack")
                {
-                   gM.message.text = ("Click To Pick Up");
+                   mM.message.text = ("Click To Pick Up");
 
                    if (Input.GetMouseButtonDown(0))
                    {
 
                        pUS = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<PickUpScript>();
                    } 
-               }else
+               }else if(mouseHit.transform.tag == "Computer")
+                  {
+                      mM.message.text = ("Click To Turn On");
+
+                      if (Input.GetMouseButtonDown(0))
+                      {
+                          gM.computer = true;
+                          SceneManager.LoadScene("Computer");
+                      } 
+                  }else
                {
-                   gM.message.text = ("");
+                   mM.message.text = ("");
                } 
             } 
+        }
+        else
+        {
+            mM.message.text = ("");
         }
     }
 }

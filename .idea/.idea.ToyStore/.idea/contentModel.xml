@@ -14,6 +14,7 @@
           <e p="CutterButton.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="inPackageManager.cs" t="Include" />
+          <e p="MainSceneManager.cs" t="Include" />
           <e p="OrderManager.cs" t="Include" />
           <e p="OutBelt.cs" t="Include" />
           <e p="PackageCheck.cs" t="Include" />

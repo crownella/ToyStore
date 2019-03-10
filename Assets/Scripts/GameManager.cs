@@ -8,23 +8,16 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Text message;
-    public bool holdingObject;
-    public GameObject CraftingMenu;
-    public bool locked;
+    
+
+
     public Transform spawn;
     public bool computer;
-    public bool crafting;
-
-    public GameObject cube;
-    
-    //ordersystem
-    public Text cashValue;
     public float cash;
-    public Text currentOrder;
-    public OrderManager oM;
-    public string order;
-    public PackageManager pM;
+
+
+    
+
     
     //time
     public int day;
@@ -39,18 +32,21 @@ public class GameManager : MonoBehaviour
     public int timer;
     public int timerMod;
 
+    public bool itemOrdered = true;
+    public List<GameObject> orderedItems = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         DontDestroyOnLoad(this);
-        CraftingMenu.SetActive(false);
-        locked = true;
         cash = 20.00f;
         day = 1;
         hours = 12;
         minutes = 0;
         seconds = 0;
-        crafting = false;
+
 
 
     }
@@ -58,51 +54,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         if (SceneManager.GetActiveScene().name == "Computer")
         {
             computer = true;
-            locked = false;
         }
         else
         {
             computer = false;
+            
         }
-        if(locked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        //message.text = ("Test");
-        if (Input.GetKeyDown(KeyCode.C) && computer == false)
-        {
-            if (crafting)
-            {
-                crafting = false;
-            }
-            else
-            {
-                crafting = true;
-            }
-        }
-
-        if(crafting)
-        {
-            CraftingMenu.SetActive(true);
-            locked = false;
-        }
-        else
-        {
-            CraftingMenu.SetActive(false);
-            locked = true;
-        }
-
-        cashValue.text = cash.ToString();
-        order = oM.ReturnOrderName();
-        currentOrder.text = order;
 
         if (timer >= timerMod)
         {
@@ -110,16 +72,26 @@ public class GameManager : MonoBehaviour
             timer = 0;
            
         }
+
+        //dayT.text = day.ToString();
+        //hoursT.text = hours.ToString();
+        //minutesT.text = minutes.ToString();
+        //secondsT.text = seconds.ToString();
+        
+
+
     }
 
     public void OpenPackage(GameObject Package)
     {
+        /*
         pM = Package.GetComponent<PackageManager>();
         spawn = Package.transform;
         Destroy(Package);
         Instantiate(cube, spawn.position, spawn.rotation);
         Instantiate(cube, spawn.position, spawn.rotation);
         Instantiate(cube, spawn.position, spawn.rotation);
+        */
     }
 
 
@@ -143,5 +115,11 @@ public class GameManager : MonoBehaviour
         }
 
         seconds += 1;
+    }
+
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+        computer = false;
     }
 }

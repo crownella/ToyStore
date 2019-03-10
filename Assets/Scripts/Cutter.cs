@@ -18,7 +18,7 @@ public class Cutter : MonoBehaviour
     void Start()
     {
         buttonOff.SetActive(true);
-        buttonOn.SetActive(true);
+        buttonOn.SetActive(false);
     }
 
     // Update is called once per frame

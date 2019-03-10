@@ -24,6 +24,15 @@ TagManager:
   - TopFlap
   - Block
   - Lego
+  - Nails
+  - Car
+  - GunPow
+  - Cash
+  - CurrentOrder
+  - CraftingMenu
+  - Message
+  - OrderManager
+  - MM
   layers:
   - Default
   - TransparentFX

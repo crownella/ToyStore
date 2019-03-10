@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     public GameManager gM;
+    public MainSceneManager mM;
     public Rigidbody rB;
     public GameObject objectPlaceholder;
     public bool rotated = false;
@@ -24,6 +25,7 @@ public class PickUpScript : MonoBehaviour
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         objectPlaceholder = GameObject.FindWithTag("Item");
         cS = GameObject.FindWithTag("Craft").GetComponent<CraftingStation>();
+        mM = GameObject.FindGameObjectWithTag("MM").GetComponent<MainSceneManager>();
 
     }
 
@@ -60,7 +62,7 @@ public class PickUpScript : MonoBehaviour
             //position = objectPlaceholder.transform.position;
             transform.SetParent(objectPlaceholder.transform);
             rB.useGravity = false;
-            gM.holdingObject = true;
+            mM.holdingObject = true;
             rB.isKinematic = true;
             rB.constraints = RigidbodyConstraints.FreezeRotation;
             rB.mass = 0;
@@ -70,7 +72,7 @@ public class PickUpScript : MonoBehaviour
         {
             transform.SetParent(null);
             rB.useGravity = true;
-            gM.holdingObject = false;
+            mM.holdingObject = false;
             rB.isKinematic = false;
             rB.constraints = RigidbodyConstraints.None;
             rB.mass = 1;

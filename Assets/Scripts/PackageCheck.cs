@@ -54,7 +54,6 @@ public class PackageCheck : MonoBehaviour
         if (orderList.Count == 0)
         {
             packageNoti.text = "Package Accepted";
-            oM.currentOrderNumber += 1;
             oM.orderCompleted = true;
             Destroy(package);
             for(int i = 0; i < packageList.Count; i++)
