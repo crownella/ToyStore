@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1763719653}
+      - m_Target: {fileID: 2128530734}
         m_MethodName: SelectOrder2
         m_Mode: 1
         m_Arguments:
@@ -4339,7 +4339,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1763719653}
+      - m_Target: {fileID: 2128530734}
         m_MethodName: SelectOrder1
         m_Mode: 1
         m_Arguments:
@@ -4468,7 +4468,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1763719653}
+      - m_Target: {fileID: 2128530734}
         m_MethodName: SelectOrder
         m_Mode: 1
         m_Arguments:
@@ -4995,71 +4995,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757422419}
   m_CullTransparentMesh: 0
---- !u!1 &1763719652
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1763719654}
-  - component: {fileID: 1763719653}
-  m_Layer: 0
-  m_Name: OrderManager
-  m_TagString: OrderManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1763719653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763719652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86a1dcf4dca36a4b93d6e0cb7758315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  currentOrderNumber: 0
-  orderActive: 0
-  orderCompleted: 0
-  ordersCompleted: 0
-  name: {fileID: 1825370197}
-  pay: {fileID: 806501431}
-  shippingLocation: {fileID: 103886515}
-  text: {fileID: 680368689}
-  gameFinished: 0
-  Lego: {fileID: 8617845503824002361, guid: e7f1ebd4e1b9e4645b8a4e51a53281f7, type: 3}
-  Block: {fileID: 6597082507494960127, guid: 72d0cd03cd222f14a91b23a4b8806767, type: 3}
-  Car: {fileID: 8617845503824002361, guid: e7f1ebd4e1b9e4645b8a4e51a53281f7, type: 3}
-  ExplosiveCar: {fileID: 6597082507494960127, guid: 72d0cd03cd222f14a91b23a4b8806767,
-    type: 3}
-  order1t: {fileID: 1268196040}
-  order2t: {fileID: 973252366}
-  pending: {fileID: 1757422421}
-  order1List: []
-  order2List: []
-  order3List: []
-  order4List: []
---- !u!4 &1763719654
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763719652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799685973
 GameObject:
   m_ObjectHideFlags: 0
@@ -6213,6 +6148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
+  oM: {fileID: 0}
   browser: 0
   craftStore: 1
   orders: 0
@@ -6250,6 +6186,13 @@ MonoBehaviour:
   blueprintPrice: {fileID: 1749916163}
   bought: {fileID: 761405461}
   blueprintName: {fileID: 593401670}
+  name: {fileID: 1825370197}
+  pay: {fileID: 806501431}
+  shippingLocation: {fileID: 103886515}
+  text: {fileID: 680368689}
+  order1t: {fileID: 1268196040}
+  order2t: {fileID: 973252366}
+  pending: {fileID: 1757422421}
 --- !u!4 &2128530735
 Transform:
   m_ObjectHideFlags: 0

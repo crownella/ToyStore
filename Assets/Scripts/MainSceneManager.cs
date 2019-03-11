@@ -33,6 +33,8 @@ public class MainSceneManager : MonoBehaviour
     }
 
     public GameObject spawnedObject;
+    public bool gameOver;
+    public Text gameOvert;
 
     
 
@@ -50,6 +52,14 @@ public class MainSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //end game conditions
+        if (gM.gameWon || gM.gameLost)
+        {
+            gameOver = true;
+            gameOvert.text = "Someone is knocking at the door";
+        }
+        
+        //cursor locking
         if(locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -59,7 +69,7 @@ public class MainSceneManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        
+        //crafting menu
         if (Input.GetKeyDown(KeyCode.C))
         {
             if (crafting)
@@ -84,6 +94,17 @@ public class MainSceneManager : MonoBehaviour
             CraftingMenu.SetActive(false);
             locked = true;
         } 
+        if (gM.carUnlocked)
+        {
+            carBlueprint.SetActive(true);
+        }
+
+        if (gM.eCarUnlocked)
+        {
+            eCarBlueprint.SetActive(true);
+        }
+        
+        //ui setting
         order = oM.ReturnOrderName();
         currentOrder.text = order;
         cashValue.text = gM.cash.ToString();
@@ -93,17 +114,7 @@ public class MainSceneManager : MonoBehaviour
         {
             SpawnPackage();
             gM.itemOrdered = false;
-        }
-
-        if (gM.carUnlocked)
-        {
-           carBlueprint.SetActive(true);
-        }
-
-        if (gM.eCarUnlocked)
-        {
-            eCarBlueprint.SetActive(true);
-        }
+        }       
     }
 
     public void SpawnPackage()
@@ -111,10 +122,6 @@ public class MainSceneManager : MonoBehaviour
         _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
         pM = _currentPackage.GetComponent<PackageManager>();
         pM.itemsInPackage = gM.orderedItems;
-        for(int i = 0; i < pM.itemsInPackage.Count; i++)
-        {
-            print(pM.itemsInPackage[i].gameObject.name);
-        }
     }
 
     public void OpenPackage(GameObject package)
@@ -122,7 +129,6 @@ public class MainSceneManager : MonoBehaviour
         pM = package.GetComponent<PackageManager>();
         for(int i = 0; i < pM.itemsInPackage.Count; i++)
         {
-            print(pM.itemsInPackage[i].gameObject.name);
             spawnedObject = Instantiate(pM.itemsInPackage[i], package.transform.position, package.transform.rotation);
             spawnedObject.SetActive(true);
         }

@@ -31,6 +31,8 @@ public class CraftingStation : MonoBehaviour
 
     public GameObject block;
     public GameObject lego;
+    public GameObject car;
+    public GameObject eCar;
     
     // Start is called before the first frame update
     void Start()
@@ -184,55 +186,140 @@ public class CraftingStation : MonoBehaviour
             Instantiate(lego, spawn.position, spawn.rotation);
         }
     }
-/*
+
     public void CraftCar()
     {
         removeSmallCubes = 1;
-        removeMiniCubes = 6;
+        removeMiniCubes = 4;
         removeNails = 1;
         if (smallCubes >= 1 && miniCubes >= 4 && nails >= 1)
         {
-            if (itemsList[x].transform.tag == "SmallCube")
+            for (int x = 0; x < itemsList.Count; x++)
             {
-                if (removeSmallCubes != 0)
+                if (itemsList[x].transform.tag == "SmallCube")
                 {
-                    Destroy(itemsList[x]);
-                    tmpRemoveSmallCubes += 1; 
+                    if (removeSmallCubes != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveSmallCubes += 1;
+                    }
+                }
+
+                if (itemsList[x].transform.tag == "MiniCube")
+                {
+                    if (removeMiniCubes != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveMiniCubes += 1;
+                    }
+                }
+                if (itemsList[x].transform.tag == "Nails")
+                {
+                    if (removeNails != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveNails += 1;
+                    }
+                }
+
+                if (tmpRemoveSmallCubes == removeSmallCubes)
+                {
+                    removeSmallCubes = 0;
+                    tmpRemoveSmallCubes = 0;
+                }
+
+                if (tmpRemoveMiniCubes == removeMiniCubes)
+                {
+                    removeMiniCubes = 0;
+                    tmpRemoveMiniCubes = 0;
+                }
+                if (tmpRemoveNails == removeNails)
+                {
+                    removeNails = 0;
+                    tmpRemoveNails = 0;
+                }
+
+                if (removeMiniCubes == 0 && removeSmallCubes == 0 && removeNails == 0)
+                {
+                    break;
                 }
             }
-
-            if (itemsList[x].transform.tag == "MiniCube")
-            {
-                if (removeMiniCubes != 0)
-                {
-                    Destroy(itemsList[x]);
-                    tmpRemoveMiniCubes += 1;
-                }
-            }
-
-            if (tmpRemoveSmallCubes == removeSmallCubes)
-            {
-                removeSmallCubes = 0;
-                tmpRemoveSmallCubes = 0;
-            }
-
-            if (tmpRemoveMiniCubes == removeMiniCubes)
-            {
-                removeMiniCubes = 0;
-                tmpRemoveMiniCubes = 0;
-            }
-
-            if (removeMiniCubes == 0 && removeSmallCubes == 0)
-            {
-                break;
-            }
-        }
+            Instantiate(car, spawn.position, spawn.rotation);
         }
     }
 
     public void CraftECar()
     {
-        
+        removeSmallCubes = 1;
+        removeMiniCubes = 4;
+        removeNails = 1;
+        removeGunPow = 1;
+        if (smallCubes >= 1 && miniCubes >= 4 && nails >= 1 && gunPow >= 1)
+        {
+            for (int x = 0; x < itemsList.Count; x++)
+            {
+                if (itemsList[x].transform.tag == "SmallCube")
+                {
+                    if (removeSmallCubes != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveSmallCubes += 1;
+                    }
+                }
+
+                if (itemsList[x].transform.tag == "MiniCube")
+                {
+                    if (removeMiniCubes != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveMiniCubes += 1;
+                    }
+                }
+                if (itemsList[x].transform.tag == "Nails")
+                {
+                    if (removeNails != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveNails += 1;
+                    }
+                }
+                if (itemsList[x].transform.tag == "GunPow")
+                {
+                    if (removeGunPow != 0)
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveGunPow += 1;
+                    }
+                }
+
+                if (tmpRemoveSmallCubes == removeSmallCubes)
+                {
+                    removeSmallCubes = 0;
+                    tmpRemoveSmallCubes = 0;
+                }
+
+                if (tmpRemoveMiniCubes == removeMiniCubes)
+                {
+                    removeMiniCubes = 0;
+                    tmpRemoveMiniCubes = 0;
+                }
+                if (tmpRemoveNails == removeNails)
+                {
+                    removeNails = 0;
+                    tmpRemoveNails = 0;
+                }
+                if (tmpRemoveGunPow == removeGunPow)
+                {
+                    removeGunPow = 0;
+                    tmpRemoveGunPow = 0;
+                }
+                if (removeMiniCubes == 0 && removeSmallCubes == 0 && removeNails == 0 && removeGunPow == 0)
+                {
+                    break;
+                }
+            }
+            Instantiate(eCar, spawn.position, spawn.rotation);
+        }
     }
-    */
+    
 }

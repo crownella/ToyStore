@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public bool carUnlocked = false;
     public bool eCarUnlocked = false;
+
+    public bool gameLost;
+    public bool gameWon;
     
 
 
@@ -70,6 +73,8 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Computer")
         {
             computer = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
@@ -82,12 +87,6 @@ public class GameManager : MonoBehaviour
             Clock();
             timer = 0;
            
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && startGame == false)
-        {
-            SceneManager.LoadScene("Computer");
-            startGame = true;
         }
 
 

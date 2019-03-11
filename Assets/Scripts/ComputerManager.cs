@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ComputerManager : MonoBehaviour
 {
     public GameManager gM;
+    public OrderManager oM;
 
     public bool browser = false;
     
@@ -62,18 +63,43 @@ public class ComputerManager : MonoBehaviour
     public Text bought;
     public Text blueprintName;
     
+    //order manager move
+    public Text name;
+    public Text pay;
+    //public Text customerName;
+    public Text shippingLocation;
+    public Text text;
+    
+    public Text order1t;
+    public Text order2t;
+    public Text pending;
+    
     
     // Start is called before the first frame update
     void Start()
     {
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        oM = GameObject.FindWithTag("OrderManager").GetComponent<OrderManager>();
         nailsButton.gameObject.SetActive(false);
         gunPowButton.gameObject.SetActive(false);
+        pending.text = "";
     }
 
     // Update is called once per frame
     void Update()
     {
+        //end game conditons
+        if (oM.completedOrders.Contains(oM.order4))
+        {
+            gM.gameLost = true;
+            gM.gameWon = false;
+        }else if (oM.completedOrders.Contains(oM.order5))
+        {
+            gM.gameWon = true;
+            gM.gameLost = false;
+        }
+        
+        //computer management
         if (browser == false)
         {
             browserPanel.SetActive(false);
@@ -160,6 +186,21 @@ public class ComputerManager : MonoBehaviour
             craftPanel.SetActive(false);
             orderPanel.SetActive(true);
             shopUpgradePanel.SetActive(false);
+
+            order1t.text = oM.Order1Spot.CustomerName;
+            if (oM.receivedOrders.Count > 1)
+            {
+                order2t.text = oM.Order2Spot.CustomerName;
+            }
+            else
+            {
+                order2t.text = "";
+            }
+
+            name.text = oM.clickedOrder.CustomerName;
+            pay.text = oM.clickedOrder.OrderPay;
+            shippingLocation.text = oM.clickedOrder.ShippingLocation;
+            text.text = oM.clickedOrder.OrderText;
         }else if(shopUpgrades)
         {
             craftPanel.SetActive(false);
@@ -341,5 +382,20 @@ public class ComputerManager : MonoBehaviour
                 gM.carUnlocked = true;
             }
         }
+    }
+
+    public void SelectOrder1()
+    {
+        oM.SelectOrder1(pending);
+    }
+
+    public void SelectOrder2()
+    {
+        oM.SelectOrder2(pending);
+    }
+
+    public void SelectOrder()
+    {
+        oM.SelectOrder(pending);
     }
 }

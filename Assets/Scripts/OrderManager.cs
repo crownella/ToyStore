@@ -12,11 +12,11 @@ public class OrderManager : MonoBehaviour
     public bool orderActive;
     public bool orderCompleted;
     public int ordersCompleted;
-    public Text name;
-    public Text pay;
+    //public Text name;
+    //public Text pay;
     //public Text customerName;
-    public Text shippingLocation;
-    public Text text;
+    //public Text shippingLocation;
+    //public Text text;
 
     public bool gameFinished;
 
@@ -25,13 +25,13 @@ public class OrderManager : MonoBehaviour
     public GameObject Car;
     public GameObject ExplosiveCar;
 
-    public Text order1t;
-    public Text order2t;
+    //public Text order1t;
+    //public Text order2t;
 
     public Order clickedOrder;
     public Order Order1Spot;
     public Order Order2Spot;
-    public Text pending;
+    //public Text pending;
     
     private static OrderManager _instance;
     public static OrderManager Instance
@@ -63,21 +63,23 @@ public class OrderManager : MonoBehaviour
 
         }
     }
-    List<Order> allOrders = new List<Order>();
-    List<Order> receivedOrders = new List<Order>();
-    List<Order> completedOrders = new List<Order>();
+    public List<Order> allOrders = new List<Order>();
+    public List<Order> receivedOrders = new List<Order>();
+    public List<Order> completedOrders = new List<Order>();
     public Order activeOrder;
     
     
-    //make orders
+    //make orders                                                           <<<<First add order here
     public List<GameObject> order1List = new List<GameObject>();
     public List<GameObject> order2List = new List<GameObject>();
     public List<GameObject> order3List = new List<GameObject>();
     public List<GameObject> order4List = new List<GameObject>();
-    public Order order1;
+    public List<GameObject> order5List = new List<GameObject>();
+    public Order order1;                                                   //And here
     public Order order2;
     public Order order3;
     public Order order4;
+    public Order order5;
     
     private void Awake()
     {
@@ -88,26 +90,29 @@ public class OrderManager : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(this);
         }
     }
     void Start()
     {
-        DontDestroyOnLoad(this);
+        
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        //make orders
+        //make orders                                                                  <<<<Then add order here
         order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("15$"),15, 1);
         order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("10$"),10, 2);
         order3 = new Order(("John Gimme"), ("Charles"),("Can you send a car for my sons birthday? He turns 1 in four days."),("1 Car"), ("14$"),14, 3);
-        order4 = new Order(("Amanda Yukon"), ("Valley"),("I need one Explosive Car. By tomorrow."),("1 Explosive Carr"), ("100$"),100, 4);
+        order4 = new Order(("Anonymous"), ("Nowhere"),("I need one Explosive Car. By tomorrow."),("1 Explosive Car"), ("100$"),100, 4);
+        order4 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 5 Blocks, 3 Legos, and 2 Cars of the highest quality."),("5 Blocks 3 Legos 2 Cars"), ("200$"),200, 5);
         
         
-        //make master order list
+        //make master order list                                                       <<<<Then add order here
         allOrders.Add(order1);
         allOrders.Add(order2);
         allOrders.Add(order3);
         allOrders.Add(order4);
+        allOrders.Add(order5);
         
-        //make lists for every order
+        //make lists for every order                                                   <<<<Then add  order here
         order1List.Add(Block);
         order1List.Add(Block);
         order1List.Add(Block);
@@ -118,38 +123,49 @@ public class OrderManager : MonoBehaviour
         order3List.Add(Car);
         
         order4List.Add(ExplosiveCar);
+        
+        order5List.Add(Block);
+        order5List.Add(Block);
+        order5List.Add(Block);
+        order5List.Add(Block);
+        order5List.Add(Block);
+        order5List.Add(Lego);
+        order5List.Add(Lego);
+        order5List.Add(Lego);
+        order5List.Add(Car);
+        order5List.Add(Car);
 
         currentOrderNumber = 1;
         gameFinished = false;
         clickedOrder = order1;
         receivedOrders.Add(order1);
         receivedOrders.Add(order2);
-        pending.text = "";
-        //activeOrder.Equals(order1);
+        //pending.text = "";
 
     }
 
     // Update is called once per frame
     void Update()
     {
+ 
         if (gM.computer)
         {
             Order1Spot = receivedOrders[0];
-            order1t.text = Order1Spot.CustomerName;
+            //order1t.text = Order1Spot.CustomerName;
             if (receivedOrders.Count > 1)
             {
                 Order2Spot = receivedOrders[1];
-                order2t.text = Order2Spot.CustomerName;
+                //order2t.text = Order2Spot.CustomerName;
             }
             else
             {
-                order2t.text = "";
+                //order2t.text = "";
             }
             
-            name.text = clickedOrder.CustomerName;
-            pay.text = clickedOrder.OrderPay;
-            shippingLocation.text = clickedOrder.ShippingLocation;
-            text.text = clickedOrder.OrderText;
+           // name.text = clickedOrder.CustomerName;
+            //pay.text = clickedOrder.OrderPay;
+            //shippingLocation.text = clickedOrder.ShippingLocation;
+            //text.text = clickedOrder.OrderText;
         }
 
         if (orderCompleted == true)
@@ -158,6 +174,21 @@ public class OrderManager : MonoBehaviour
             receivedOrders.Remove(activeOrder);
             orderCompleted = false;
             orderActive = false; 
+        }
+
+        if (completedOrders.Count > 0 && completedOrders.Contains(order3) == false)      //<<<<Last add order here 
+        {
+            receivedOrders.Add(order3);
+        }
+
+        if (completedOrders.Count > 1 && completedOrders.Contains(order4) == false)
+        {
+            receivedOrders.Add(order4);
+        }
+
+        if (completedOrders.Count > 2 && completedOrders.Contains(order4) == false)
+        {
+            receivedOrders.Add(order5);
         }
   
     }
@@ -193,7 +224,7 @@ public class OrderManager : MonoBehaviour
         }
     }
 
-    public void SelectOrder1()
+    public void SelectOrder1(Text pending)
     {
         clickedOrder = Order1Spot;
         if (activeOrder != clickedOrder)
@@ -206,7 +237,7 @@ public class OrderManager : MonoBehaviour
         }
     }
     
-    public void SelectOrder2()
+    public void SelectOrder2(Text pending)
     {
         clickedOrder = Order2Spot;
         if (activeOrder != clickedOrder)
@@ -219,7 +250,7 @@ public class OrderManager : MonoBehaviour
         }
     }
 
-    public void SelectOrder()
+    public void SelectOrder(Text pending)
     {
         if (orderActive == false)
         {

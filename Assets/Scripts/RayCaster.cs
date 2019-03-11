@@ -219,12 +219,36 @@ public class RayCaster : MonoBehaviour
                       if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
                       {
                           gM.computer = true;
-                          gM.orderedItems.Clear();
+                          gM.orderedItems.Clear(); //<----------------------------clears ordered items                                        
                           SceneManager.LoadScene("Computer");
                       } 
+               }else if(mouseHit.transform.tag == "Door")
+                  {
+                      if (mM.gameOver)
+                      {
+                          mM.message.text = ("Click To Open");
+                          
+                          if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
+                          {
+                              if (gM.gameWon)
+                              {
+                                  SceneManager.LoadScene("Win");
+                              }else if (gM.gameLost)
+                              {
+                                  SceneManager.LoadScene("Lose");
+                              }
+                              
+                          } 
+                      }
+                      else
+                      {
+                          mM.message.text = ("You have orders to finish");
+                      }
+
+                      
                   }else
                {
-                   mM.message.text = ("");
+                  mM.message.text = ("");
                } 
             } 
         }
