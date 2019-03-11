@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     public bool carUnlocked = false;
     public bool eCarUnlocked = false;
 
-    public bool gameLost;
-    public bool gameWon;
+    public bool gameLost = false;
+    public bool gameWon = false;
     
 
 

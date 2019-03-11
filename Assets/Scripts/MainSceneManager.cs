@@ -56,7 +56,11 @@ public class MainSceneManager : MonoBehaviour
         if (gM.gameWon || gM.gameLost)
         {
             gameOver = true;
-            gameOvert.text = "Someone is knocking at the door";
+            gameOvert.text = "Someones knocking at the door";
+        }
+        else
+        {
+            gameOvert.text = "";
         }
         
         //cursor locking
