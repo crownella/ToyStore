@@ -36,6 +36,11 @@ public class CraftingStation : MonoBehaviour
     {
         for (int x = 0; x < itemsList.Count; x++)
         {
+            
+            if (itemsList[x] == null)
+            {
+                itemsList.Remove(itemsList[x]);
+            }
             //print(itemsList[x].transform.tag);
             if (itemsList[x].transform.tag == "Cube")
             {
@@ -52,6 +57,7 @@ public class CraftingStation : MonoBehaviour
                 tmpMiniCubes += 1;
                 //print("Cube in List");
             }
+        
         }
 
         if (tmpCubes != cubes)
@@ -91,7 +97,6 @@ public class CraftingStation : MonoBehaviour
                 if (itemsList[x].transform.tag == "SmallCube")
                 {
                     Destroy(itemsList[x]);
-                    RemoveItem(itemsList[x]);
                     tmpRemoveSmallCubes += 1;
                 }
 
@@ -101,6 +106,7 @@ public class CraftingStation : MonoBehaviour
                     removeSmallCubes = 0;
                     break;
                 }
+
             }
 
             Instantiate(block, spawn.position, spawn.rotation);
@@ -120,7 +126,6 @@ public class CraftingStation : MonoBehaviour
                     if (removeSmallCubes != 0)
                     {
                         Destroy(itemsList[x]);
-                        RemoveItem(itemsList[x]);
                         tmpRemoveSmallCubes += 1; 
                     }
                 }
@@ -130,7 +135,6 @@ public class CraftingStation : MonoBehaviour
                     if (removeMiniCubes != 0)
                     {
                         Destroy(itemsList[x]);
-                        RemoveItem(itemsList[x]);
                         tmpRemoveMiniCubes += 1;
                     }
                 }

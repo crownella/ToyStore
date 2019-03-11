@@ -33,6 +33,7 @@ TagManager:
   - Message
   - OrderManager
   - MM
+  - Computer
   layers:
   - Default
   - TransparentFX

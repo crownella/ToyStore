@@ -96,9 +96,9 @@ public class RayCaster : MonoBehaviour
         
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
-            if (mM.crafting == false)
+            if (mM.crafting == false && mM.holdingObject == false)
             {
-                  if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block")
+                  if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block" || mouseHit.transform.tag == "GunPow" || mouseHit.transform.tag == "Nails" || mouseHit.transform.tag == "Car" || mouseHit.transform.tag == "ECar" )
                {
                    pUS = mouseHit.transform.GetComponent<PickUpScript>();
                    if (pUS.holding == false)
@@ -219,6 +219,7 @@ public class RayCaster : MonoBehaviour
                       if (Input.GetMouseButtonDown(0))
                       {
                           gM.computer = true;
+                          gM.orderedItems.Clear();
                           SceneManager.LoadScene("Computer");
                       } 
                   }else

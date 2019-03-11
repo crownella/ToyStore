@@ -13,7 +13,13 @@ public class ComputerManager : MonoBehaviour
     public bool craftStore = true;
     public bool orders = false;
     public bool shopUpgrades = false;
+    
+    public GameObject browserPanel;
+    public GameObject craftPanel;
+    public GameObject orderPanel;
+    public GameObject shopUpgradePanel;
 
+    //craft store
     public bool cubes = true;
     public bool nails = false;
     public bool gunPow = false;
@@ -29,17 +35,38 @@ public class ComputerManager : MonoBehaviour
     public Image nailsPic;
     public Image gunPowPic;
 
-    public GameObject browserPanel;
-    public GameObject craftPanel;
-    public GameObject orderPanel;
-    public GameObject shopUpgradePanel;
+    public bool cubesOrdered = false;
+    public bool nailsOrdered = false;
+    public bool gunPowOrdered = false;
     
     public Text cashValue;
+    public Text itemOrdered;
+    public Text price;
+
+    public int cubesPrice = 5;
+    public int nailsPrice = 7;
+    public int gunPowPrice = 15;
+    
+    //shop upgrades
+
+    public bool carBlue = true;
+    public bool eCarBlue = false;
+
+    public Image careBlueprintPic;
+    public Image eCarBlueprintPic;
+
+    public int carBluePrice = 2;
+    public int eCarBluePrice = 4;
+
+    public Text blueprintPrice;
+    public Text bought;
+    public Text blueprintName;
     
     
     // Start is called before the first frame update
     void Start()
     {
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         nailsButton.gameObject.SetActive(false);
         gunPowButton.gameObject.SetActive(false);
     }
@@ -55,57 +82,137 @@ public class ComputerManager : MonoBehaviour
         {
             browserPanel.SetActive(true);
         }
-        if (craftStore == true)
+        if (craftStore)
         {
             craftPanel.SetActive(true);
             orderPanel.SetActive(false);
             shopUpgradePanel.SetActive(false);
 
-            if (cubes == true)
+            if (cubes)
             {
                 cubesPic.gameObject.SetActive(true);
                 nailsPic.gameObject.SetActive(false);
                 gunPowPic.gameObject.SetActive(false);
 
+                price.text = cubesPrice.ToString();
+
+                if (cubesOrdered)
+                {
+                    itemOrdered.text = ("On The Way");
+                }
+                else if(nailsOrdered|| gunPowOrdered)
+                {
+                    itemOrdered.text = ("CraftStore.com can only fulfill one order at a time, dont be greedy.");
+                }
+                else
+                {
+                    itemOrdered.text = ("");
+                }
+
                 itemDescript.text = ("3 large cubes of wood. Very Cubey.");
-            }else if (nails == true)
+            }else if (nails)
             {
                 cubesPic.gameObject.SetActive(false);
                 nailsPic.gameObject.SetActive(true);
                 gunPowPic.gameObject.SetActive(false);
 
+                price.text = nailsPrice.ToString();
+                
+                if (nailsOrdered)
+                {
+                    itemOrdered.text = ("On The Way");
+                }
+                else if(cubesOrdered|| gunPowOrdered)
+                {
+                    itemOrdered.text = ("CraftStore.com can only fulfill one order at a time, dont be greedy.");
+                }
+                else
+                {
+                    itemOrdered.text = ("");
+                }
+
                 itemDescript.text = ("Box of Nails. Very Sharp. CraftStore.com is not liable for any accidents.");
-            }else if (gunPow == true)
+            }else if (gunPow)
             {
                 cubesPic.gameObject.SetActive(false);
                 nailsPic.gameObject.SetActive(false);
                 gunPowPic.gameObject.SetActive(true);
 
+                price.text = gunPowPrice.ToString();
+                
+                if (gunPowOrdered)
+                {
+                    itemOrdered.text = ("On The Way");
+                }
+                else if(nailsOrdered|| cubesOrdered)
+                {
+                    itemOrdered.text = ("CraftStore.com can only fulfill one order at a time, dont be greedy.");
+                }
+                else
+                {
+                    itemOrdered.text = ("");
+                }
+
                 itemDescript.text = ("Gun Powder. Be careful. CraftStore.com is not liable for any accidents.");
             }
-        }else if(orders == true)
+        }else if(orders)
         {
             craftPanel.SetActive(false);
             orderPanel.SetActive(true);
             shopUpgradePanel.SetActive(false);
-        }else if(shopUpgrades == true)
+        }else if(shopUpgrades)
         {
             craftPanel.SetActive(false);
             orderPanel.SetActive(false);
             shopUpgradePanel.SetActive(true);
+
+            if (carBlue)
+            {
+                careBlueprintPic.gameObject.SetActive(true);
+                eCarBlueprintPic.gameObject.SetActive(false);
+                blueprintPrice.text = carBluePrice.ToString();
+                blueprintName.text = "Car Blueprint";
+                if (gM.carUnlocked)
+                {
+                    bought.text = "Already Owned";
+                }else
+                {
+                    bought.text = "";
+                }
+            }else if (eCarBlue)
+            {
+                eCarBlueprintPic.gameObject.SetActive(true);
+                careBlueprintPic.gameObject.SetActive(false);
+                blueprintPrice.text = eCarBluePrice.ToString();
+                blueprintName.text = "Explosive Car Blueprint";
+                if (gM.eCarUnlocked)
+                {
+                    bought.text = "Already Owned";
+                }else
+                {
+                    bought.text = "";
+                }
+            }
         }
 
-        if (nailsUnlocked == true)
+        if (nailsUnlocked)
         {
             nailsButton.gameObject.SetActive(true);
         }
 
-        if (gunPowUnlocked == true)
+        if (gunPowUnlocked)
         {
             gunPowButton.gameObject.SetActive(true);
         }
         
         cashValue.text = gM.cash.ToString();
+
+        if (gM.itemOrdered == false)
+        {
+            cubesOrdered = false;
+            nailsOrdered = false;
+            gunPowOrdered = false;
+        }
 
     }
 
@@ -157,6 +264,18 @@ public class ComputerManager : MonoBehaviour
         gunPow = true;
     }
 
+    public void SelectCar()
+    {
+        carBlue = true;
+        eCarBlue = false;
+    }
+
+    public void SelectECar()
+    {
+        eCarBlue = true;
+        carBlue = false;
+    }
+
     public void TurnOnBrowser()
     {
         browser = true;
@@ -171,13 +290,56 @@ public class ComputerManager : MonoBehaviour
     {
         if (gM.itemOrdered == false)
         {
-            if (cubes == true)
+            if (cubes)
             {
-                gM.orderedItems.Add(gM.cube);   
-                gM.orderedItems.Add(gM.cube);  
-                gM.orderedItems.Add(gM.cube);
-                gM.itemOrdered = true;
+                if (gM.cash >= cubesPrice)
+                {
+                    gM.cash -= cubesPrice;
+                    gM.orderedItems.Add(gM.cube);   
+                    gM.orderedItems.Add(gM.cube);  
+                    gM.orderedItems.Add(gM.cube);
+                    gM.itemOrdered = true;
+                    cubesOrdered = true;
+                }
+            }else if (nails)
+            {
+                if (gM.cash >= nailsPrice)
+                {
+                    gM.cash -= nailsPrice;
+                    gM.orderedItems.Add(gM.nails);
+                    gM.itemOrdered = true;
+                    nailsOrdered = true;
+                }
+            }else if (gunPow)
+            {
+                if (gM.cash >= gunPowPrice)
+                {
+                    gM.cash -= gunPowPrice;
+                    gM.orderedItems.Add(gM.gunPOw);
+                    gM.itemOrdered = true;
+                    gunPowOrdered = true;
+                }
             }
         } 
+    }
+
+    public void UnlockBlueprint()
+    {
+        print("clicked");
+        if (eCarBlue)
+        {
+            if (gM.eCarUnlocked == false && gM.cash > eCarBluePrice)
+            {
+                gM.cash -= eCarBluePrice;
+                gM.eCarUnlocked = true;
+            }
+        }else if (carBlue)
+        {
+            if (gM.carUnlocked == false && gM.cash > carBluePrice)
+            {
+                gM.cash -= carBluePrice;
+                gM.carUnlocked = true;
+            }
+        }
     }
 }

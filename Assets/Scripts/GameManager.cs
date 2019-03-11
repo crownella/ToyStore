@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     public GameObject nails;
     public GameObject gunPOw;
 
+    public bool startGame = false;
+
+    public bool carUnlocked = false;
+    public bool eCarUnlocked = false;
+    
+
 
 
     
@@ -41,12 +47,12 @@ public class GameManager : MonoBehaviour
     public List<GameObject> orderedItems = new List<GameObject>();
 
     // Start is called before the first frame update
+    
     void Start()
     {
         
         
         DontDestroyOnLoad(this);
-        cash = 10.00f;
         day = 1;
         hours = 12;
         minutes = 0;
@@ -78,25 +84,21 @@ public class GameManager : MonoBehaviour
            
         }
 
+        if (Input.GetKeyDown(KeyCode.E) && startGame == false)
+        {
+            //SceneManager.LoadScene("Computer");
+            //startGame = true;
+        }
+
+
         //dayT.text = day.ToString();
         //hoursT.text = hours.ToString();
         //minutesT.text = minutes.ToString();
         //secondsT.text = seconds.ToString();
-        
 
 
-    }
 
-    public void OpenPackage(GameObject Package)
-    {
-        /*
-        pM = Package.GetComponent<PackageManager>();
-        spawn = Package.transform;
-        Destroy(Package);
-        Instantiate(cube, spawn.position, spawn.rotation);
-        Instantiate(cube, spawn.position, spawn.rotation);
-        Instantiate(cube, spawn.position, spawn.rotation);
-        */
+
     }
 
 
@@ -126,5 +128,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
         computer = false;
+    }
+
+    public void StartGame()
+    {
+        print("StartGame");
+        SceneManager.LoadScene("Computer");
+        computer = true;
     }
 }

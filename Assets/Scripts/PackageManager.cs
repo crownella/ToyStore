@@ -5,11 +5,12 @@ using UnityEngine;
 public class PackageManager : MonoBehaviour
 {
     public List<GameObject> itemsInPackage = new List<GameObject>();
+    public GameManager gM;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -28,4 +29,6 @@ public class PackageManager : MonoBehaviour
     {
         itemsInPackage = iPM.GetItems();
     }
+
+ 
 }

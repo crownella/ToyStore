@@ -22,6 +22,9 @@ public class MainSceneManager : MonoBehaviour
     private GameObject _currentPackage;
     public GameObject packageObject;
     public Transform packageSpawn;
+
+    public GameObject carBlueprint;
+    public GameObject eCarBlueprint;
     
 
     void Start()
@@ -30,6 +33,8 @@ public class MainSceneManager : MonoBehaviour
         oM = GameObject.FindWithTag("OrderManager").GetComponent<OrderManager>();
         locked = true;
         holdingObject = false;
+        carBlueprint.SetActive(false);
+        eCarBlueprint.SetActive(false);
     }
 
     // Update is called once per frame
@@ -79,29 +84,31 @@ public class MainSceneManager : MonoBehaviour
             SpawnPackage();
             gM.itemOrdered = false;
         }
+
+        if (gM.carUnlocked)
+        {
+           carBlueprint.SetActive(true);
+        }
+
+        if (gM.eCarUnlocked)
+        {
+            eCarBlueprint.SetActive(true);
+        }
     }
 
     public void SpawnPackage()
     {
         _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
         pM = _currentPackage.GetComponent<PackageManager>();
-        for(int i = 0; i < pM.itemsInPackage.Count; i++)
-        {
-            print("i =" + i);
-            print(pM.itemsInPackage[i].gameObject.name);
-        }
         pM.itemsInPackage = gM.orderedItems;
         for(int i = 0; i < pM.itemsInPackage.Count; i++)
         {
-            print("x =" + i);
             print(pM.itemsInPackage[i].gameObject.name);
         }
-        gM.orderedItems.Clear();
     }
 
     public void OpenPackage(GameObject package)
     {
-        print("OPenPackage");
         pM = package.GetComponent<PackageManager>();
         for(int i = 0; i < pM.itemsInPackage.Count; i++)
         {

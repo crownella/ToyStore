@@ -79,7 +79,7 @@ public class OrderManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         //make orders
         order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("15$"),15, 1);
         order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("10$"),10, 2);
@@ -110,6 +110,7 @@ public class OrderManager : MonoBehaviour
         clickedOrder = order1;
         receivedOrders.Add(order1);
         receivedOrders.Add(order2);
+        pending.text = "";
         //activeOrder.Equals(order1);
 
     }

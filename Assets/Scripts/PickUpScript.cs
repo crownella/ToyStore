@@ -29,32 +29,6 @@ public class PickUpScript : MonoBehaviour
 
     }
 
-   /* private void OnMouseOver()
-    {
-        if (gM.holdingObject == false)
-        {
-            if (holding == false)
-            {
-                gM.message.text = ("Press E to Pick Up");
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (holding == false)
-                {
-                    
-                    holding = true;
-
-                }
-                else
-                {
-                    holding = false;
-                }
-            
-            }
-        }
-        
-    }
-  */
     private void Update()
     {
         if (holding == true)
@@ -76,6 +50,7 @@ public class PickUpScript : MonoBehaviour
             rB.isKinematic = false;
             rB.constraints = RigidbodyConstraints.None;
             rB.mass = 1;
+            
         }
     }
 
