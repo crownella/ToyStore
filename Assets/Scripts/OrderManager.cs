@@ -33,7 +33,11 @@ public class OrderManager : MonoBehaviour
     public Order Order2Spot;
     public Text pending;
     
-    
+    private static OrderManager _instance;
+    public static OrderManager Instance
+    {
+        get { return _instance; }
+    }
 
 
     public class Order
@@ -75,7 +79,17 @@ public class OrderManager : MonoBehaviour
     public Order order3;
     public Order order4;
     
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
     void Start()
     {
         DontDestroyOnLoad(this);

@@ -96,7 +96,7 @@ public class RayCaster : MonoBehaviour
         
         if (Physics.Raycast(MouseRay.origin, MouseRay.direction, out mouseHit, mouseRayDis))
         {
-            if (mM.crafting == false && mM.holdingObject == false)
+            if (mM.crafting == false)
             {
                   if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block" || mouseHit.transform.tag == "GunPow" || mouseHit.transform.tag == "Nails" || mouseHit.transform.tag == "Car" || mouseHit.transform.tag == "ECar" )
                {
@@ -113,7 +113,7 @@ public class RayCaster : MonoBehaviour
                    if (Input.GetMouseButtonDown(0))
                    {
                     
-                       if (pUS.holding == false)
+                       if (pUS.holding == false && mM.holdingObject == false)
                        {
                            pUS.holding = true;
                        }
@@ -126,14 +126,14 @@ public class RayCaster : MonoBehaviour
                }else if(mouseHit.transform.tag == "SawButtonOff")
                {
                    mM.message.text = ("Click To Turn On");
-                   if (Input.GetMouseButtonDown(0))
+                   if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
                    {
                        Cutter.TurnOnSaw();
                    } 
                }else if(mouseHit.transform.tag == "SawButtonOn")
                {
                    mM.message.text = ("Click To Turn Off");
-                   if (Input.GetMouseButtonDown(0))
+                   if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
                    {
                        Cutter.TurnOffSaw();
                    } 
@@ -153,7 +153,7 @@ public class RayCaster : MonoBehaviour
                    if (Input.GetMouseButtonDown(0))
                    {
                     
-                       if (pUS.holding == false)
+                       if (pUS.holding == false  && mM.holdingObject == false)
                        {
                            pUS.holding = true;
                        }
@@ -163,7 +163,7 @@ public class RayCaster : MonoBehaviour
                        }
                    
                    }
-                   if (Input.GetKeyDown(KeyCode.E))
+                   if (Input.GetKeyDown(KeyCode.E)  && mM.holdingObject == false)
                    {
                        mM.OpenPackage(mouseHit.transform.gameObject);
                    } 
@@ -184,7 +184,7 @@ public class RayCaster : MonoBehaviour
                    if (Input.GetMouseButtonDown(0))
                    {
                        
-                       if (pUS.holding == false)
+                       if (pUS.holding == false  && mM.holdingObject == false)
                        {
                            pUS.holding = true;
                        }
@@ -193,7 +193,7 @@ public class RayCaster : MonoBehaviour
                            pUS.holding = false;
                        }
                    }
-                   if (Input.GetKeyDown(KeyCode.E))
+                   if (Input.GetKeyDown(KeyCode.E)  && mM.holdingObject == false)
                    {
                        pM = Instantiate(closedPackage, mouseHit.transform.position, mouseHit.transform.rotation).GetComponent<PackageManager>();
                        pM.GetContents(iPM);
@@ -207,7 +207,7 @@ public class RayCaster : MonoBehaviour
                {
                    mM.message.text = ("Click To Pick Up");
 
-                   if (Input.GetMouseButtonDown(0))
+                   if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
                    {
 
                        pUS = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<PickUpScript>();
@@ -216,7 +216,7 @@ public class RayCaster : MonoBehaviour
                   {
                       mM.message.text = ("Click To Turn On");
 
-                      if (Input.GetMouseButtonDown(0))
+                      if (Input.GetMouseButtonDown(0)  && mM.holdingObject == false)
                       {
                           gM.computer = true;
                           gM.orderedItems.Clear();

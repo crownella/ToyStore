@@ -9,16 +9,23 @@ public class CraftingStation : MonoBehaviour
     public int cubes;
     public int tmpCubes;
     public int smallCubes;
+    public int nails;
+    public int gunPow;
     public int tmpSmallCubes;
     public int miniCubes;
     public int tmpMiniCubes;
+    public int tmpNails;
+    public int tmpGunPow;
     public int removeSmallCubes;
     public int removeCubes;
     public int removeMiniCubes;
+    public int removeNails;
+    public int removeGunPow;
     public int tmpRemoveSmallCubes;
     public int tmpRemoveCubes;
     public int tmpRemoveMiniCubes;
-    public GameObject Empty;
+    public int tmpRemoveNails;
+    public int tmpRemoveGunPow;
 
     public Transform spawn;
 
@@ -57,6 +64,14 @@ public class CraftingStation : MonoBehaviour
                 tmpMiniCubes += 1;
                 //print("Cube in List");
             }
+            if (itemsList[x].transform.tag == "Nails")
+            {
+                tmpNails += 1;
+            }
+            if (itemsList[x].transform.tag == "GunPow")
+            {
+                tmpGunPow += 1;
+            }
         
         }
 
@@ -72,9 +87,19 @@ public class CraftingStation : MonoBehaviour
         {
             miniCubes = tmpMiniCubes;
         }
+        if (tmpNails != nails)
+        {
+            nails = tmpNails;
+        }
+        if (tmpGunPow != gunPow)
+        {
+            gunPow = tmpGunPow;
+        }
         tmpCubes = 0;
         tmpSmallCubes = 0;
         tmpMiniCubes = 0;
+        tmpNails = 0;
+        tmpGunPow = 0;
     }
 
     public void AddtoList(GameObject item)
@@ -159,4 +184,55 @@ public class CraftingStation : MonoBehaviour
             Instantiate(lego, spawn.position, spawn.rotation);
         }
     }
+/*
+    public void CraftCar()
+    {
+        removeSmallCubes = 1;
+        removeMiniCubes = 6;
+        removeNails = 1;
+        if (smallCubes >= 1 && miniCubes >= 4 && nails >= 1)
+        {
+            if (itemsList[x].transform.tag == "SmallCube")
+            {
+                if (removeSmallCubes != 0)
+                {
+                    Destroy(itemsList[x]);
+                    tmpRemoveSmallCubes += 1; 
+                }
+            }
+
+            if (itemsList[x].transform.tag == "MiniCube")
+            {
+                if (removeMiniCubes != 0)
+                {
+                    Destroy(itemsList[x]);
+                    tmpRemoveMiniCubes += 1;
+                }
+            }
+
+            if (tmpRemoveSmallCubes == removeSmallCubes)
+            {
+                removeSmallCubes = 0;
+                tmpRemoveSmallCubes = 0;
+            }
+
+            if (tmpRemoveMiniCubes == removeMiniCubes)
+            {
+                removeMiniCubes = 0;
+                tmpRemoveMiniCubes = 0;
+            }
+
+            if (removeMiniCubes == 0 && removeSmallCubes == 0)
+            {
+                break;
+            }
+        }
+        }
+    }
+
+    public void CraftECar()
+    {
+        
+    }
+    */
 }

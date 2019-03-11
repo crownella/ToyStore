@@ -416,7 +416,7 @@ RectTransform:
   - {fileID: 1917866253}
   - {fileID: 1836203374}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -565,8 +565,72 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1230466671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230466673}
+  - component: {fileID: 1230466672}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1230466672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230466671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ddcdea51c193f4d852d78328f471e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 0}
+  computer: 0
+  cash: 100
+  cube: {fileID: 3720792772729589748, guid: 15e147ea20f39f448805a39a8d4c1ead, type: 3}
+  nails: {fileID: 8573838007148371891, guid: b57a8b90d3efd12489876db00cfbb833, type: 3}
+  gunPOw: {fileID: 8328934685464055156, guid: 2f6cfb0546b670e47b0a6b350b4f35d5, type: 3}
+  startGame: 0
+  carUnlocked: 0
+  eCarUnlocked: 0
+  day: 0
+  hours: 0
+  minutes: 0
+  seconds: 0
+  dayT: {fileID: 0}
+  hoursT: {fileID: 0}
+  minutesT: {fileID: 0}
+  secondsT: {fileID: 0}
+  timer: 0
+  timerMod: 0
+  itemOrdered: 0
+  orderedItems: []
+--- !u!4 &1230466673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230466671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 57.36587, y: -177.12979, z: 351.16638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423029873
 GameObject:
   m_ObjectHideFlags: 0

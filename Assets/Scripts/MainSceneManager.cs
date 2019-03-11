@@ -11,7 +11,7 @@ public class MainSceneManager : MonoBehaviour
     public bool holdingObject = false;
     public GameObject CraftingMenu;
     public bool locked;
-    
+
     //ordersystem
     public Text cashValue;
     public Text currentOrder;
@@ -25,7 +25,17 @@ public class MainSceneManager : MonoBehaviour
 
     public GameObject carBlueprint;
     public GameObject eCarBlueprint;
+
+    private static MainSceneManager _instance;
+    public static MainSceneManager Instance
+    {
+        get { return _instance; }
+    }
+
+    public GameObject spawnedObject;
+
     
+
 
     void Start()
     {
@@ -113,7 +123,8 @@ public class MainSceneManager : MonoBehaviour
         for(int i = 0; i < pM.itemsInPackage.Count; i++)
         {
             print(pM.itemsInPackage[i].gameObject.name);
-            Instantiate(pM.itemsInPackage[i], package.transform.position, package.transform.rotation);
+            spawnedObject = Instantiate(pM.itemsInPackage[i], package.transform.position, package.transform.rotation);
+            spawnedObject.SetActive(true);
         }
         Destroy(package);
     }

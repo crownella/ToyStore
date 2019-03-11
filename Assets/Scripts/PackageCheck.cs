@@ -16,7 +16,7 @@ public class PackageCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        oM = GameObject.FindWithTag("OrderManager").GetComponent<OrderManager>();
     }
 
     // Update is called once per frame
@@ -33,38 +33,47 @@ public class PackageCheck : MonoBehaviour
 
     public void CheckPackage(GameObject package)
     {
-        packageList = pM.itemsInPackage;
-        orderList = oM.GetOrderList(oM.activeOrder.OrderNumber);
-        for (int i = 0; i <packageList.Count; i++)
+        if (oM.orderActive == false)
         {
-            for (int x = 0; x <orderList.Count; x++)
-            {
-                if (packageList[i].transform.tag == orderList[x].transform.tag)
-                {
-                    orderList.Remove(orderList[x]);
-                }
-            
-            }
-
-            if (orderList.Count == 0)
-            {
-                break;
-            }
-        }
-        if (orderList.Count == 0)
-        {
-            packageNoti.text = "Package Accepted";
-            oM.orderCompleted = true;
-            Destroy(package);
-            for(int i = 0; i < packageList.Count; i++)
-            {
-                Destroy(packageList[i].gameObject);
-            }
+            packageNoti.text = "No Active Order";
+            Instantiate(package, delSpawn.position, delSpawn.rotation);
         }
         else
         {
-            packageNoti.text = "Package Denied";
-            Instantiate(package, delSpawn.position, delSpawn.rotation);
+            packageList = pM.itemsInPackage;
+            orderList = oM.GetOrderList(oM.activeOrder.OrderNumber);
+            for (int i = 0; i <packageList.Count; i++)
+            {
+                for (int x = 0; x <orderList.Count; x++)
+                {
+                    if (packageList[i].transform.tag == orderList[x].transform.tag)
+                    {
+                        orderList.Remove(orderList[x]);
+                    }
+            
+                }
+
+                if (orderList.Count == 0)
+                {
+                    break;
+                }
+            }
+            if (orderList.Count == 0)
+            {
+                packageNoti.text = "Package Accepted";
+                oM.orderCompleted = true;
+                Destroy(package);
+                for(int i = 0; i < packageList.Count; i++)
+                {
+                    Destroy(packageList[i].gameObject);
+                }
+            }
+            else
+            {
+                packageNoti.text = "Package Denied";
+                Instantiate(package, delSpawn.position, delSpawn.rotation);
+            }
         }
+        
     }
 }

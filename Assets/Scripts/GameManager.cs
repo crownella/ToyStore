@@ -86,8 +86,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && startGame == false)
         {
-            //SceneManager.LoadScene("Computer");
-            //startGame = true;
+            SceneManager.LoadScene("Computer");
+            startGame = true;
         }
 
 
