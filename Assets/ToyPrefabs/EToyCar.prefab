@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5846308317571838776}
   - component: {fileID: 4750075474081780015}
   - component: {fileID: 8598483933067924654}
+  - component: {fileID: 5125055021583702879}
   m_Layer: 0
   m_Name: EToyCar
   m_TagString: ECar
@@ -122,9 +123,9 @@ MeshCollider:
   m_GameObject: {fileID: 1447932608581644909}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
 --- !u!114 &4750075474081780015
@@ -140,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
-  mM: {fileID: 0}
   rB: {fileID: 0}
   objectPlaceholder: {fileID: 0}
   rotated: 0
@@ -166,6 +166,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5125055021583702879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447932608581644909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.6011114, z: 4.899688}
+  m_Center: {x: 0, y: 0.41473007, z: -0.05457837}
 --- !u!1 &3823422039599269034
 GameObject:
   m_ObjectHideFlags: 0

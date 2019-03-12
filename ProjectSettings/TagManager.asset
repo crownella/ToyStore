@@ -35,6 +35,7 @@ TagManager:
   - MM
   - Computer
   - ECar
+  - Door
   layers:
   - Default
   - TransparentFX
