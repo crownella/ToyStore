@@ -90,7 +90,7 @@ public class OrderManager : MonoBehaviour
         order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("10$"),10, 2);
         order3 = new Order(("John Gimme"), ("Charles"),("Can you send a car for my sons birthday? He turns 1 in four days."),("1 Car"), ("14$"),14, 3);
         order4 = new Order(("Anonymous"), ("Nowhere"),("I need one Explosive Car. By tomorrow."),("1 Explosive Car"), ("100$"),100, 4);
-        order5 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 5 Blocks, 3 Legos, and 2 Cars of the highest quality."),("5 Blocks 3 Legos 2 Cars"), ("200$"),200, 5);
+        order5 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 1 block, 1 Lego, and 1 Car of the highest quality."),("1 Block 1 Lego 1 Car"), ("200$"),200, 5);
         
         
         //make master order list                                                       <<<<Then add order here
@@ -113,14 +113,7 @@ public class OrderManager : MonoBehaviour
         order4List.Add(ExplosiveCar);
         
         order5List.Add(Block);
-        order5List.Add(Block);
-        order5List.Add(Block);
-        order5List.Add(Block);
-        order5List.Add(Block);
         order5List.Add(Lego);
-        order5List.Add(Lego);
-        order5List.Add(Lego);
-        order5List.Add(Car);
         order5List.Add(Car);
 
         currentOrderNumber = 1;
@@ -272,6 +265,7 @@ public class OrderManager : MonoBehaviour
 
     public void ResetPending(Text pending)
     {
+        clickedOrder = Order1Spot;
         if (activeOrder != clickedOrder)
         {
             pending.text = ("");

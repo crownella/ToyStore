@@ -31,12 +31,13 @@ public class PickUpScript : MonoBehaviour
 
     private void Update()
     {
-        if (holding == true)
+        if (holding)
         {
             //position = objectPlaceholder.transform.position;
             transform.SetParent(objectPlaceholder.transform);
             rB.useGravity = false;
             gM.holdingObject = true;
+            gM.objectBeingHeld = gameObject;
             rB.isKinematic = true;
             rB.constraints = RigidbodyConstraints.FreezeRotation;
             rB.mass = 0;
@@ -47,6 +48,7 @@ public class PickUpScript : MonoBehaviour
             transform.SetParent(null);
             rB.useGravity = true;
             gM.holdingObject = false;
+            gM.objectBeingHeld = null;
             rB.isKinematic = false;
             rB.constraints = RigidbodyConstraints.None;
             rB.mass = 1;

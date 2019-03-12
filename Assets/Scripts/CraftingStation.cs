@@ -201,6 +201,7 @@ public class CraftingStation : MonoBehaviour
                     if (removeSmallCubes != 0)
                     {
                         Destroy(itemsList[x]);
+                        //itemsList[x].SetActive(false);
                         tmpRemoveSmallCubes += 1;
                     }
                 }

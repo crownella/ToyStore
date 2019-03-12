@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     //imported from main scene
     public bool crafting = false;
     public Text message;
-    public bool holdingObject = false;
+
     public GameObject CraftingMenu;
     public bool locked;
 
@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
     public GameObject uICanvas;
     
     public Text packageNoti;
+    public GameObject objectBeingHeld;
+    public bool holdingObject = false;
 
     // Start is called before the first frame update
     
@@ -198,9 +200,10 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnPackage()
     {
+        print("spawnpackage");
         _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
         pM = _currentPackage.GetComponent<PackageManager>();
-        pM.itemsInPackage = orderedItems;
+        pM.itemsInPackage = orderedItems;        //<--------- is this breaking it????
     }
     public void OpenPackage(GameObject package)
     {
