@@ -81,28 +81,16 @@ public class OrderManager : MonoBehaviour
     public Order order4;
     public Order order5;
     
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-    }
     void Start()
     {
-        
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        
         //make orders                                                                  <<<<Then add order here
         order1 = new Order(("Amy Lone"), ("Dallas"),("Please send me 3 blocks for my sister's baby shower present."),("3 Blocks"), ("15$"),15, 1);
         order2 = new Order(("Jimmy Yon"), ("Oldtown"),("My Cat likes Legos, please send 2."),("2 Legos"), ("10$"),10, 2);
         order3 = new Order(("John Gimme"), ("Charles"),("Can you send a car for my sons birthday? He turns 1 in four days."),("1 Car"), ("14$"),14, 3);
         order4 = new Order(("Anonymous"), ("Nowhere"),("I need one Explosive Car. By tomorrow."),("1 Explosive Car"), ("100$"),100, 4);
-        order4 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 5 Blocks, 3 Legos, and 2 Cars of the highest quality."),("5 Blocks 3 Legos 2 Cars"), ("200$"),200, 5);
+        order5 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 5 Blocks, 3 Legos, and 2 Cars of the highest quality."),("5 Blocks 3 Legos 2 Cars"), ("200$"),200, 5);
         
         
         //make master order list                                                       <<<<Then add order here
@@ -147,6 +135,8 @@ public class OrderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("copleted orders" +completedOrders.Count);
+        //print("recieved orders" +receivedOrders.Count);
  
         if (gM.computer)
         {
@@ -176,24 +166,26 @@ public class OrderManager : MonoBehaviour
             orderActive = false; 
         }
 
-        if (completedOrders.Count > 0 && completedOrders.Contains(order3) == false)      //<<<<Last add order here 
+        if (completedOrders.Count > 0 && completedOrders.Contains(order3) == false && receivedOrders.Contains(order3) == false)      //<<<<Then add order here 
         {
+            //print("addorder3");
             receivedOrders.Add(order3);
         }
 
-        if (completedOrders.Count > 1 && completedOrders.Contains(order4) == false)
+        if (completedOrders.Count > 1 && completedOrders.Contains(order4) == false && receivedOrders.Contains(order4) == false)
         {
+            //print("addorder4");
             receivedOrders.Add(order4);
         }
 
-        if (completedOrders.Count > 2 && completedOrders.Contains(order4) == false)
+        if (completedOrders.Count > 2 && receivedOrders.Contains(order5) == false)
         {
             receivedOrders.Add(order5);
         }
   
     }
 
-    public List<GameObject> GetOrderList(int oN)
+    public List<GameObject> GetOrderList(int oN)                                                                                 //<<<<Last add order here
     {
         if (oN == 1)
         {
@@ -201,13 +193,22 @@ public class OrderManager : MonoBehaviour
         }else if (oN == 2)
         {
             return order2List;
+        }else if(oN == 3)
+        {
+            return order3List;
+        }else if(oN == 4)
+        {
+            return order4List;
+        }else if(oN == 5)
+        {
+            return order5List;
         }else
         {
             return null;
         }
     }
 
-    public string ReturnOrderName()
+    public string ReturnOrderName() 
     {
         if (gameFinished)
         {
@@ -266,6 +267,14 @@ public class OrderManager : MonoBehaviour
         else
         {
             pending.text = ("Another Order Active");
+        }
+    }
+
+    public void ResetPending(Text pending)
+    {
+        if (activeOrder != clickedOrder)
+        {
+            pending.text = ("");
         }
     }
     

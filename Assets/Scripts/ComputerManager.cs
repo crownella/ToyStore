@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -259,7 +260,12 @@ public class ComputerManager : MonoBehaviour
 
     public void TurnOffComputer()
     {
-        gM.LoadMainScene();
+        browser = false;
+        gM.computer = false;
+        if (gM.gameWon || gM.gameLost)
+        {
+            gM.gameOver = true;
+        }
     }
 
     public void OpenCraftStore()
@@ -320,6 +326,8 @@ public class ComputerManager : MonoBehaviour
     public void TurnOnBrowser()
     {
         browser = true;
+        ResetPending();
+        oM.clickedOrder = oM.Order1Spot;
     }
 
     public void TurnOffBrowser()
@@ -397,5 +405,10 @@ public class ComputerManager : MonoBehaviour
     public void SelectOrder()
     {
         oM.SelectOrder(pending);
+    }
+
+    public void ResetPending()
+    {
+        oM.ResetPending(pending);
     }
 }

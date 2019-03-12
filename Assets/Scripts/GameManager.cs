@@ -48,6 +48,38 @@ public class GameManager : MonoBehaviour
 
     public bool itemOrdered = false;
     public List<GameObject> orderedItems = new List<GameObject>();
+    
+    //imported from main scene
+    public bool crafting = false;
+    public Text message;
+    public bool holdingObject = false;
+    public GameObject CraftingMenu;
+    public bool locked;
+
+    //ordersystem
+    public Text cashValue;
+    public Text currentOrder;
+    public OrderManager oM;
+    public string order;
+    public PackageManager pM;
+
+    private GameObject _currentPackage;
+    public GameObject packageObject;
+    public Transform packageSpawn;
+
+    public GameObject carBlueprint;
+    public GameObject eCarBlueprint;
+
+ 
+
+    public GameObject spawnedObject;
+    public bool gameOver;
+    public Text gameOvert;
+
+    public GameObject computerCanvas;
+    public GameObject uICanvas;
+    
+    public Text packageNoti;
 
     // Start is called before the first frame update
     
@@ -55,11 +87,16 @@ public class GameManager : MonoBehaviour
     {
         
         
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
+        locked = true;
+        holdingObject = false;
+        carBlueprint.SetActive(false);
+        eCarBlueprint.SetActive(false);
         day = 1;
         hours = 12;
         minutes = 0;
         seconds = 0;
+        computer = true;
 
 
 
@@ -67,37 +104,113 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-        
-        if (SceneManager.GetActiveScene().name == "Computer")
+    {  
+        if (computer || crafting)
         {
-            computer = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            locked = false;
+            packageNoti.text = "";
+        }
+        if (computer == false && crafting == false)
+        {
+            locked = true;
+        }
+        if (computer)
+        {
+            computerCanvas.SetActive(true);
+            uICanvas.SetActive(false);
         }
         else
         {
-            computer = false;
-            
-        }
-
-        if (timer >= timerMod)
+            computerCanvas.SetActive(false);
+            uICanvas.SetActive(true);
+        } 
+        if(locked)
         {
-            Clock();
-            timer = 0;
-           
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
-
+        //if (timer >= timerMod)
+        //{
+           // Clock();
+           // timer = 0;
+           
+        //}
         //dayT.text = day.ToString();
         //hoursT.text = hours.ToString();
         //minutesT.text = minutes.ToString();
         //secondsT.text = seconds.ToString();
-
-
-
-
+        
+        //imported from update
+        //end conditons
+        if (gameOver == true)
+        {
+            gameOvert.text = "Someones knocking at the door";
+        }else
+        {
+            gameOvert.text = "";
+        }
+        
+        //crafing
+        if (Input.GetKeyDown(KeyCode.C) && computer == false)
+        {
+            if (crafting)
+            {
+                crafting = false;
+            }
+            else
+            {
+                crafting = true;
+            }
+        }
+        if(crafting)
+        {
+            CraftingMenu.SetActive(true);
+        }
+        else
+        {
+            CraftingMenu.SetActive(false);
+        } 
+        if (carUnlocked)
+        {
+            carBlueprint.SetActive(true);
+        }
+        if (eCarUnlocked)
+        {
+            eCarBlueprint.SetActive(true);
+        }
+        //ui setting
+        if (computer == false)
+        {
+            order = oM.ReturnOrderName();
+            currentOrder.text = order;
+            cashValue.text = cash.ToString();
+        }
+        if (itemOrdered && computer == false)
+        {
+            SpawnPackage();
+            itemOrdered = false;
+        } 
+    }
+    public void SpawnPackage()
+    {
+        _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
+        pM = _currentPackage.GetComponent<PackageManager>();
+        pM.itemsInPackage = orderedItems;
+    }
+    public void OpenPackage(GameObject package)
+    {
+        pM = package.GetComponent<PackageManager>();
+        for(int i = 0; i < pM.itemsInPackage.Count; i++)
+        {
+            spawnedObject = Instantiate(pM.itemsInPackage[i], package.transform.position, package.transform.rotation);
+            spawnedObject.SetActive(true);
+        }
+        Destroy(package);
     }
 
 
@@ -123,16 +236,5 @@ public class GameManager : MonoBehaviour
         seconds += 1;
     }
 
-    public void LoadMainScene()
-    {
-        SceneManager.LoadScene("MainScene");
-        computer = false;
-    }
 
-    public void StartGame()
-    {
-        print("StartGame");
-        SceneManager.LoadScene("Computer");
-        computer = true;
-    }
 }

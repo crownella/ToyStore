@@ -7,16 +7,18 @@ public class PackageCheck : MonoBehaviour
 {
     public PackageManager pM;
     public OrderManager oM;
+    public GameManager gM;
 
     public List<GameObject> packageList = new List<GameObject>();
     public List<GameObject> orderList = new List<GameObject>();
 
-    public Text packageNoti;
+    
     public Transform delSpawn;
     // Start is called before the first frame update
     void Start()
     {
         oM = GameObject.FindWithTag("OrderManager").GetComponent<OrderManager>();
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class PackageCheck : MonoBehaviour
     {
         if (oM.orderActive == false)
         {
-            packageNoti.text = "No Active Order";
+            gM.packageNoti.text = "No Active Order";
             Instantiate(package, delSpawn.position, delSpawn.rotation);
         }
         else
@@ -60,7 +62,7 @@ public class PackageCheck : MonoBehaviour
             }
             if (orderList.Count == 0)
             {
-                packageNoti.text = "Package Accepted";
+                gM.packageNoti.text = "Package Accepted";
                 oM.orderCompleted = true;
                 Destroy(package);
                 for(int i = 0; i < packageList.Count; i++)
@@ -70,7 +72,7 @@ public class PackageCheck : MonoBehaviour
             }
             else
             {
-                packageNoti.text = "Package Denied";
+                gM.packageNoti.text = "Package Denied";
                 Instantiate(package, delSpawn.position, delSpawn.rotation);
             }
         }

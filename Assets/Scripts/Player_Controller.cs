@@ -14,32 +14,41 @@ public class Player_Controller : MonoBehaviour
     public float velocityMod; //veloctiy timer this modifier
     public float sensX;
     public float sensY;
+    public GameManager gM;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        yaw = Input.GetAxis("Mouse X") * sensX;
-        transform.Rotate(0,yaw,0);
+        if (gM.computer == false)
+        {
+            yaw = Input.GetAxis("Mouse X") * sensX;
+            transform.Rotate(0,yaw,0);
 
-        pitch = Input.GetAxis(("Mouse Y")) * sensY;
-        cam.transform.Rotate(-pitch,0,0);
+            pitch = Input.GetAxis(("Mouse Y")) * sensY;
+            cam.transform.Rotate(-pitch,0,0);
 
-        fpForback = Input.GetAxis("Vertical");
-        fpStrafe = Input.GetAxis("Horizontal");
+            fpForback = Input.GetAxis("Vertical");
+            fpStrafe = Input.GetAxis("Horizontal");
 
-        inputVelocity = transform.forward * fpForback;
-        inputVelocity += transform.right * fpStrafe;
+            inputVelocity = transform.forward * fpForback;
+            inputVelocity += transform.right * fpStrafe;
+        }
+
     }
 
     void FixedUpdate()
     {
-        rb.velocity = inputVelocity * velocityMod + (Physics.gravity * .69f);
+        if (gM.computer == false)
+        {
+            rb.velocity = inputVelocity * velocityMod + (Physics.gravity * .69f);
+        }
     }
 }
