@@ -63,6 +63,7 @@ public class PackageCheck : MonoBehaviour
             if (orderList.Count == 0)
             {
                 gM.packageNoti.text = "Package Accepted";
+                gM.cash += oM.activeOrder.OrderPayInt;
                 oM.orderCompleted = true;
                 Destroy(package);
                 for(int i = 0; i < packageList.Count; i++)

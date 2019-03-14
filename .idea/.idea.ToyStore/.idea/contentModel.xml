@@ -15,6 +15,7 @@
           <e p="GameManager.cs" t="Include" />
           <e p="inPackageManager.cs" t="Include" />
           <e p="MainSceneManager.cs" t="Include" />
+          <e p="ObjectManager.cs" t="Include" />
           <e p="OrderManager.cs" t="Include" />
           <e p="OutBelt.cs" t="Include" />
           <e p="PackageCheck.cs" t="Include" />
@@ -24,9 +25,6 @@
           <e p="RayCaster.cs" t="Include" />
           <e p="TitleScreen.cs" t="Include" />
           <e p="Trash.cs" t="Include" />
-        </e>
-        <e p="ToyPrefabs" t="Include">
-          <e p="ObjectManager.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

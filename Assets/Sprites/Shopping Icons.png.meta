@@ -2,8 +2,11 @@ fileFormatVersion: 2
 guid: 41da3e7ba9803ea40bed725ba935bc73
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Power_Icon
-    21300002: BrowserIcon
+    21300000: PowerB
+    21300002: BowserB
+    21300004: TTIcon
+    21300006: CSCion
+    21300008: ShoppingUpgradeI
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -104,11 +107,22 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Power_Icon
+      name: PowerB
       rect:
         serializedVersion: 2
         x: 92
@@ -116,19 +130,19 @@ TextureImporter:
         width: 116
         height: 108
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5e78f96bcead214a983cbd5c209df53
+      spriteID: 6ffbab8e0a55a3a4cbf7649663388aba
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrowserIcon
+      name: BowserB
       rect:
         serializedVersion: 2
         x: 267
@@ -136,13 +150,73 @@ TextureImporter:
         width: 113
         height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3bec928a48ce2f49969650746880fd6
+      spriteID: e5b111beb5ddb084b90c0fd873315aeb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TTIcon
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 844
+        width: 123
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4ccd974db66684a895f35ae1d13827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CSCion
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 844
+        width: 109
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bed1dede413c08478b4915c275888cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShoppingUpgradeI
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 840
+        width: 118
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee3633ae31b0e84ca7b0f7a88f7fa33
       vertices: []
       indices: 
       edges: []
@@ -150,7 +224,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3deeb86240ef06045a5c0b3c3cc56400
+    spriteID: 4307fda9a3f26eb4b9eca8398fc097fb
     vertices: []
     indices: 
     edges: []

@@ -15,6 +15,8 @@ public class Player_Controller : MonoBehaviour
     public float sensX;
     public float sensY;
     public GameManager gM;
+
+    private float verticalLook = 0f;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,13 @@ public class Player_Controller : MonoBehaviour
             transform.Rotate(0,yaw,0);
 
             pitch = Input.GetAxis(("Mouse Y")) * sensY;
-            cam.transform.Rotate(-pitch,0,0);
+            
+            verticalLook += -pitch;
+            verticalLook = Mathf.Clamp(verticalLook, -60f, 60f);
+            
+            
+            //cam.transform.Rotate(-pitch,0,0);
+            cam.transform.localEulerAngles = new Vector3(verticalLook,0f,0f);
 
             fpForback = Input.GetAxis("Vertical");
             fpStrafe = Input.GetAxis("Horizontal");
