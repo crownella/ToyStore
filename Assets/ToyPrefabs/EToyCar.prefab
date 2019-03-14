@@ -87,8 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3456738733322611217}
   - component: {fileID: 5846308317571838776}
-  - component: {fileID: 4750075474081780015}
   - component: {fileID: 8598483933067924654}
+  - component: {fileID: 3486448585670288317}
   - component: {fileID: 5125055021583702879}
   m_Layer: 0
   m_Name: EToyCar
@@ -128,28 +128,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
---- !u!114 &4750075474081780015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447932608581644909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rB: {fileID: 0}
-  objectPlaceholder: {fileID: 0}
-  rotated: 0
-  position: {x: 0, y: 0, z: 0}
-  cS: {fileID: 0}
-  onTable: 0
-  inPackage: 0
-  iPM: {fileID: 0}
-  holding: 0
 --- !u!54 &8598483933067924654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +144,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3486448585670288317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447932608581644909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb5348f74926c24591b47877a5e290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectMass: 7
+  onTable: 0
+  inPackage: 0
+  beingHeld: 0
 --- !u!65 &5125055021583702879
 BoxCollider:
   m_ObjectHideFlags: 0

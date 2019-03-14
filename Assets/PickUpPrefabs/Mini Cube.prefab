@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1247060786722849718}
   - component: {fileID: 8453588034309858589}
   - component: {fileID: 7816957445314114918}
-  - component: {fileID: 3228331503981608674}
   - component: {fileID: 1136993401141841135}
+  - component: {fileID: 8502872920907566714}
   - component: {fileID: 1583964235520770602}
   m_Layer: 0
   m_Name: Mini Cube
@@ -80,28 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3228331503981608674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5888233293597670198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rB: {fileID: 0}
-  objectPlaceholder: {fileID: 0}
-  rotated: 0
-  position: {x: 0, y: 0, z: 0}
-  cS: {fileID: 0}
-  onTable: 0
-  inPackage: 0
-  iPM: {fileID: 0}
-  holding: 0
 --- !u!65 &1136993401141841135
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,6 +93,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.019999996, z: 0.019999996}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8502872920907566714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5888233293597670198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb5348f74926c24591b47877a5e290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectMass: 1
+  onTable: 0
+  inPackage: 0
+  beingHeld: 0
 --- !u!54 &1583964235520770602
 Rigidbody:
   m_ObjectHideFlags: 0

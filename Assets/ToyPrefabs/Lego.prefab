@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6250756723563675716}
   - component: {fileID: 8335172398666171889}
   - component: {fileID: 2558895287293679200}
-  - component: {fileID: 6371064296045042441}
+  - component: {fileID: 4886154202829272583}
   - component: {fileID: 8495277390101867916}
   m_Layer: 0
   m_Name: Lego
@@ -93,7 +93,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.017005805, y: 0.018378327, z: 0.029474244}
   m_Center: {x: 0.000050050203, y: 0, z: 0.0052718353}
---- !u!114 &6371064296045042441
+--- !u!114 &4886154202829272583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,19 +102,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8617845503824002361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
+  m_Script: {fileID: 11500000, guid: abb5348f74926c24591b47877a5e290b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rB: {fileID: 0}
-  objectPlaceholder: {fileID: 0}
-  rotated: 0
-  position: {x: 0, y: 0, z: 0}
-  cS: {fileID: 0}
+  objectMass: 3
   onTable: 0
   inPackage: 0
-  iPM: {fileID: 0}
-  holding: 0
+  beingHeld: 0
 --- !u!54 &8495277390101867916
 Rigidbody:
   m_ObjectHideFlags: 0

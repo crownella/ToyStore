@@ -87,8 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2685780321322878656}
   - component: {fileID: 6602067151164514281}
-  - component: {fileID: 5428714498344680958}
   - component: {fileID: 9074455265415444607}
+  - component: {fileID: 6295481478957660133}
   - component: {fileID: 4662553552032550490}
   m_Layer: 0
   m_Name: ToyCar
@@ -128,28 +128,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
---- !u!114 &5428714498344680958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2208193603117702844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rB: {fileID: 0}
-  objectPlaceholder: {fileID: 0}
-  rotated: 0
-  position: {x: 0, y: 0, z: 0}
-  cS: {fileID: 0}
-  onTable: 0
-  inPackage: 0
-  iPM: {fileID: 0}
-  holding: 0
 --- !u!54 &9074455265415444607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +144,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6295481478957660133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208193603117702844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb5348f74926c24591b47877a5e290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectMass: 5
+  onTable: 0
+  inPackage: 0
+  beingHeld: 0
 --- !u!65 &4662553552032550490
 BoxCollider:
   m_ObjectHideFlags: 0

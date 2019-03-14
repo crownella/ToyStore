@@ -25,6 +25,9 @@
           <e p="TitleScreen.cs" t="Include" />
           <e p="Trash.cs" t="Include" />
         </e>
+        <e p="ToyPrefabs" t="Include">
+          <e p="ObjectManager.cs" t="Include" />
+        </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

@@ -249,8 +249,8 @@ GameObject:
   - component: {fileID: 8947311875610018071}
   - component: {fileID: 6466769473967568592}
   - component: {fileID: 138652994232384719}
+  - component: {fileID: 988847156430743230}
   - component: {fileID: 428397353557904582}
-  - component: {fileID: 280922690737657097}
   m_Layer: 0
   m_Name: ToyBlock
   m_TagString: Block
@@ -339,6 +339,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &988847156430743230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6597082507494960127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb5348f74926c24591b47877a5e290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectMass: 3
+  onTable: 0
+  inPackage: 0
+  beingHeld: 0
 --- !u!65 &428397353557904582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -352,28 +368,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.02, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &280922690737657097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6597082507494960127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b38182d83cfe740b5b5013aa94b497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gM: {fileID: 0}
-  rB: {fileID: 0}
-  objectPlaceholder: {fileID: 0}
-  rotated: 0
-  position: {x: 0, y: 0, z: 0}
-  cS: {fileID: 0}
-  onTable: 0
-  inPackage: 0
-  iPM: {fileID: 0}
-  holding: 0
 --- !u!1 &7385927884392347452
 GameObject:
   m_ObjectHideFlags: 0

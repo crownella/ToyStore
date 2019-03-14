@@ -5,32 +5,24 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     public GameManager gM;
-    //public MainSceneManager mM;
     public Rigidbody rB;
     public GameObject objectPlaceholder;
-    public bool rotated = false;
-    public Vector3 position;
-    public CraftingStation cS;
-    public bool onTable = false;
-    public bool inPackage = false;
-    public inPackageManager iPM;
-    
+    private ObjectManager oM;
 
     public bool holding = false;
     // Start is called before the first frame update
 
     private void Start()
     {
-        rB = GetComponent<Rigidbody>();
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         objectPlaceholder = GameObject.FindWithTag("Item");
-        cS = GameObject.FindWithTag("Craft").GetComponent<CraftingStation>();
-        //mM = GameObject.FindGameObjectWithTag("MM").GetComponent<MainSceneManager>();
+        
 
     }
 
     private void Update()
     {
+        /*
         if (holding)
         {
             //position = objectPlaceholder.transform.position;
@@ -54,45 +46,45 @@ public class PickUpScript : MonoBehaviour
             rB.mass = 1;
             
         }
+        */
     }
 
-    private void OnCollisionEnter(Collision other)
+    
+
+    public void PickUp(GameObject other)
     {
-        if (other.transform.tag == "Craft" && onTable == false)
+        if (gM.holdingObject == false)
         {
-            cS = other.transform.GetComponent<CraftingStation>();
-            cS.AddtoList(this.gameObject);
-            onTable = true;
-        }
+            rB = other.GetComponent<Rigidbody>();
+            oM = other.GetComponent<ObjectManager>();
+            
+            other.transform.SetParent(objectPlaceholder.transform);
+            rB.useGravity = false;
+            rB.mass = 0;
+            rB.isKinematic = true;
+            rB.constraints = RigidbodyConstraints.FreezeRotation;
+            gM.holdingObject = true;
+            oM.beingHeld = true;
+            gM.objectBeingHeld = other.gameObject;
+
+        } 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void DropObject(GameObject other)
     {
-        if (other.transform.tag == "EmptyPackage" && inPackage == false)
+        if (gM.holdingObject)
         {
-            iPM = other.transform.GetComponent<inPackageManager>();
-            iPM.addItem(this.gameObject);
-            inPackage = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "EmptyPackage" && inPackage == true)
-        {
-            iPM = other.transform.GetComponent<inPackageManager>();
-            iPM.removeItem(this.gameObject);
-            inPackage = false;
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.transform.tag == "Craft" && onTable == true)
-        {
-            cS = other.transform.GetComponent<CraftingStation>();
-            cS.RemoveItem(this.gameObject);
-            onTable = false;
+            rB = other.GetComponent<Rigidbody>();
+            oM = other.GetComponent<ObjectManager>();
+            
+            other.transform.SetParent(null);
+            gM.holdingObject = false;
+            rB.useGravity = true;
+            rB.isKinematic = false;
+            rB.constraints = RigidbodyConstraints.None;
+            oM.beingHeld = true;
+            rB.mass = oM.objectMass;
+            gM.objectBeingHeld = null;
         }
     }
 }

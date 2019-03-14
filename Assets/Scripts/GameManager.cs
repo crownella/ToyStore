@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
     public GameObject objectBeingHeld;
     public bool holdingObject = false;
 
+    public bool packageOpended = false;
+
     // Start is called before the first frame update
     
     void Start()
@@ -200,10 +202,10 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnPackage()
     {
-        print("spawnpackage");
         _currentPackage = Instantiate(packageObject, packageSpawn.position, packageSpawn.rotation);
         pM = _currentPackage.GetComponent<PackageManager>();
         pM.itemsInPackage = orderedItems;        //<--------- is this breaking it????
+        packageOpended = false;
     }
     public void OpenPackage(GameObject package)
     {
@@ -214,6 +216,7 @@ public class GameManager : MonoBehaviour
             spawnedObject.SetActive(true);
         }
         Destroy(package);
+        packageOpended = true;
     }
 
 
