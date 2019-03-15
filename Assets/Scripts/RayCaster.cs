@@ -123,6 +123,7 @@ public class RayCaster : MonoBehaviour
                 }
                 else
                 {
+                    //print(mouseHit.transform.name);
                     if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block" || mouseHit.transform.tag == "GunPow" || mouseHit.transform.tag == "Nails" || mouseHit.transform.tag == "Car" || mouseHit.transform.tag == "ECar" )
                   {
                       /*if (gM.holdingObject == false ||

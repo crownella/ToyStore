@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     
 
 
-    public Transform spawn;
     public bool computer;
     public float cash;
 
@@ -19,13 +18,12 @@ public class GameManager : MonoBehaviour
     public GameObject nails;
     public GameObject gunPOw;
 
-    public bool startGame = false;
 
-    public bool carUnlocked = false;
-    public bool eCarUnlocked = false;
+    public bool carUnlocked;
+    public bool eCarUnlocked;
 
-    public bool gameLost = false;
-    public bool gameWon = false;
+    public bool gameLost;
+    public bool gameWon;
     
 
 
@@ -46,11 +44,11 @@ public class GameManager : MonoBehaviour
     public int timer;
     public int timerMod;
 
-    public bool itemOrdered = false;
+    public bool itemOrdered;
     public List<GameObject> orderedItems = new List<GameObject>();
     
     //imported from main scene
-    public bool crafting = false;
+    public bool crafting;
     public Text message;
 
     public GameObject CraftingMenu;
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
     public GameObject objectBeingHeld;
     public bool holdingObject = false;
 
-    public bool packageOpended = false;
+    public bool packageOpended = true;
 
     // Start is called before the first frame update
     
@@ -101,6 +99,7 @@ public class GameManager : MonoBehaviour
         minutes = 0;
         seconds = 0;
         computer = true;
+        packageOpended = true;
 
 
 

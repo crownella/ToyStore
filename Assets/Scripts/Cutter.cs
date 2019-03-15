@@ -26,7 +26,7 @@ public class Cutter : MonoBehaviour
     {
         if (on)
         {
-            transform.Rotate(rotationSpeed,0,0);
+            transform.Rotate(0,0,rotationSpeed);
         }
     }
 

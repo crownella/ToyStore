@@ -33,16 +33,30 @@ public class CraftingStation : MonoBehaviour
     public GameObject lego;
     public GameObject car;
     public GameObject eCar;
+
+    public AudioSource aS;
+    public int craftTimer;
+    public int craftCutoff;
+    public bool crafting;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        aS = GetComponent<AudioSource>();
+        crafting = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (crafting)
+        {
+            craftTimer += 1;
+        }
+        else
+        {
+            craftTimer = 0;
+        }
         for (int x = 0; x < itemsList.Count; x++)
         {
             
@@ -116,141 +130,182 @@ public class CraftingStation : MonoBehaviour
 
     public void CraftBlock()
     {
-        removeSmallCubes = 1;
-        if (smallCubes >= 1)
+        if (crafting == false)
         {
-            for(int x = 0; x < itemsList.Count; x++)
+            crafting = true;
+            aS.Play();
+            removeSmallCubes = 1;
+            print("CraftBlock");
+            if (smallCubes >= 1)
             {
-                if (itemsList[x].transform.tag == "SmallCube")
+                print("SmallCubes");
+                for(int x = 0; x < itemsList.Count; x++)
                 {
-                    Destroy(itemsList[x]);
-                    tmpRemoveSmallCubes += 1;
-                }
+                    if (itemsList[x].transform.tag == "SmallCube")
+                    {
+                        Destroy(itemsList[x]);
+                        tmpRemoveSmallCubes += 1;
+                    }
 
-                if (tmpRemoveSmallCubes == removeSmallCubes)
+                    if (tmpRemoveSmallCubes == removeSmallCubes)
+                    {
+                        tmpRemoveSmallCubes = 0;
+                        removeSmallCubes = 0;
+                        break;
+                    }
+
+                }
+                while (craftTimer < craftCutoff)
                 {
-                    tmpRemoveSmallCubes = 0;
-                    removeSmallCubes = 0;
-                    break;
+                   
                 }
-
+                Instantiate(block, spawn.position, spawn.rotation);
+                crafting = false;
+                aS.Stop();
             }
-
-            Instantiate(block, spawn.position, spawn.rotation);
-        }
+        } 
     }
 
     public void CraftLego()
     {
-        removeSmallCubes = 1;
-        removeMiniCubes = 6;
-        if (smallCubes >= 1 && miniCubes >= 6)
+        if (crafting == false)
         {
-            for (int x = 0; x < itemsList.Count; x++)
+            crafting = true;
+            aS.Play();
+            removeSmallCubes = 1;
+            removeMiniCubes = 6;
+            if (smallCubes >= 1 && miniCubes >=6)
             {
-                if (itemsList[x].transform.tag == "SmallCube")
+                for (int x = 0; x < itemsList.Count; x++)
                 {
-                    if (removeSmallCubes != 0)
+                    if (itemsList[x].transform.tag == "SmallCube")
                     {
-                        Destroy(itemsList[x]);
-                        tmpRemoveSmallCubes += 1; 
+                        if (removeSmallCubes != 0)
+                        {
+                            Destroy(itemsList[x]);
+                            tmpRemoveSmallCubes += 1; 
+                        }
+                    }
+
+                    if (itemsList[x].transform.tag == "MiniCube")
+                    {
+                        if (removeMiniCubes != 0)
+                        {
+                            Destroy(itemsList[x]);
+                            tmpRemoveMiniCubes += 1;
+                        }
+                    }
+
+                    if (tmpRemoveSmallCubes == removeSmallCubes)
+                    {
+                        removeSmallCubes = 0;
+                        tmpRemoveSmallCubes = 0;
+                    }
+
+                    if (tmpRemoveMiniCubes == removeMiniCubes)
+                    {
+                        removeMiniCubes = 0;
+                        tmpRemoveMiniCubes = 0;
+                    }
+
+                    if (removeMiniCubes == 0 && removeSmallCubes == 0)
+                    {
+                        break;
                     }
                 }
 
-                if (itemsList[x].transform.tag == "MiniCube")
+                while (craftTimer < craftCutoff)
                 {
-                    if (removeMiniCubes != 0)
-                    {
-                        Destroy(itemsList[x]);
-                        tmpRemoveMiniCubes += 1;
-                    }
+                   
                 }
-
-                if (tmpRemoveSmallCubes == removeSmallCubes)
-                {
-                    removeSmallCubes = 0;
-                    tmpRemoveSmallCubes = 0;
-                }
-
-                if (tmpRemoveMiniCubes == removeMiniCubes)
-                {
-                    removeMiniCubes = 0;
-                    tmpRemoveMiniCubes = 0;
-                }
-
-                if (removeMiniCubes == 0 && removeSmallCubes == 0)
-                {
-                    break;
-                }
+                Instantiate(lego, spawn.position, spawn.rotation);
+                crafting = false;
+                aS.Stop();
             }
-            Instantiate(lego, spawn.position, spawn.rotation);
         }
+        
     }
 
     public void CraftCar()
     {
-        removeSmallCubes = 1;
-        removeMiniCubes = 4;
-        removeNails = 1;
-        if (smallCubes >= 1 && miniCubes >= 4 && nails >= 1)
+        if (crafting == false)
         {
-            for (int x = 0; x < itemsList.Count; x++)
+            crafting = true;
+            aS.Play();
+            removeSmallCubes = 1;
+            removeMiniCubes = 4;
+            removeNails = 1;
+            if (smallCubes >= 1 && miniCubes >= 4 && nails >= 1)
             {
-                if (itemsList[x].transform.tag == "SmallCube")
+                for (int x = 0; x < itemsList.Count; x++)
                 {
-                    if (removeSmallCubes != 0)
+                    if (itemsList[x].transform.tag == "SmallCube")
                     {
-                        Destroy(itemsList[x]);
-                        //itemsList[x].SetActive(false);
-                        tmpRemoveSmallCubes += 1;
+                        if (removeSmallCubes != 0)
+                        {
+                            Destroy(itemsList[x]);
+                            //itemsList[x].SetActive(false);
+                            tmpRemoveSmallCubes += 1;
+                        }
+                    }
+
+                    if (itemsList[x].transform.tag == "MiniCube")
+                    {
+                        if (removeMiniCubes != 0)
+                        {
+                            Destroy(itemsList[x]);
+                            tmpRemoveMiniCubes += 1;
+                        }
+                    }
+                    if (itemsList[x].transform.tag == "Nails")
+                    {
+                        if (removeNails != 0)
+                        {
+                            Destroy(itemsList[x]);
+                            tmpRemoveNails += 1;
+                        }
+                    }
+
+                    if (tmpRemoveSmallCubes == removeSmallCubes)
+                    {
+                        removeSmallCubes = 0;
+                        tmpRemoveSmallCubes = 0;
+                    }
+
+                    if (tmpRemoveMiniCubes == removeMiniCubes)
+                    {
+                        removeMiniCubes = 0;
+                        tmpRemoveMiniCubes = 0;
+                    }
+                    if (tmpRemoveNails == removeNails)
+                    {
+                        removeNails = 0;
+                        tmpRemoveNails = 0;
+                    }
+
+                    if (removeMiniCubes == 0 && removeSmallCubes == 0 && removeNails == 0)
+                    {
+                        break;
                     }
                 }
-
-                if (itemsList[x].transform.tag == "MiniCube")
+                while (craftTimer < craftCutoff)
                 {
-                    if (removeMiniCubes != 0)
-                    {
-                        Destroy(itemsList[x]);
-                        tmpRemoveMiniCubes += 1;
-                    }
+                   
                 }
-                if (itemsList[x].transform.tag == "Nails")
-                {
-                    if (removeNails != 0)
-                    {
-                        Destroy(itemsList[x]);
-                        tmpRemoveNails += 1;
-                    }
-                }
-
-                if (tmpRemoveSmallCubes == removeSmallCubes)
-                {
-                    removeSmallCubes = 0;
-                    tmpRemoveSmallCubes = 0;
-                }
-
-                if (tmpRemoveMiniCubes == removeMiniCubes)
-                {
-                    removeMiniCubes = 0;
-                    tmpRemoveMiniCubes = 0;
-                }
-                if (tmpRemoveNails == removeNails)
-                {
-                    removeNails = 0;
-                    tmpRemoveNails = 0;
-                }
-
-                if (removeMiniCubes == 0 && removeSmallCubes == 0 && removeNails == 0)
-                {
-                    break;
-                }
+                Instantiate(car, spawn.position, spawn.rotation);
+                crafting = false;
+                aS.Stop();
             }
-            Instantiate(car, spawn.position, spawn.rotation);
         }
     }
 
     public void CraftECar()
     {
+        if (crafting == false)
+        {
+            crafting = true;
+            aS.Play();
+        }
         removeSmallCubes = 1;
         removeMiniCubes = 4;
         removeNails = 1;
@@ -319,7 +374,13 @@ public class CraftingStation : MonoBehaviour
                     break;
                 }
             }
+            while (craftTimer < craftCutoff)
+            {
+                   
+            }
             Instantiate(eCar, spawn.position, spawn.rotation);
+            crafting = false;
+            aS.Stop();
         }
     }
     

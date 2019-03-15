@@ -20,7 +20,7 @@ public class OutBelt : MonoBehaviour
     {
         if (other.transform.tag == "Package")
         {
-            other.transform.position += Vector3.forward * Time.deltaTime;
+            other.transform.position += Vector3.back * Time.deltaTime;
         }
     }
 }

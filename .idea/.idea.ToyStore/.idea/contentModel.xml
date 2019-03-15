@@ -8,13 +8,10 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="ComputerManager.cs" t="Include" />
-          <e p="ComputerStart.cs" t="Include" />
           <e p="CraftingStation.cs" t="Include" />
           <e p="Cutter.cs" t="Include" />
-          <e p="CutterButton.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="inPackageManager.cs" t="Include" />
-          <e p="MainSceneManager.cs" t="Include" />
           <e p="ObjectManager.cs" t="Include" />
           <e p="OrderManager.cs" t="Include" />
           <e p="OutBelt.cs" t="Include" />
