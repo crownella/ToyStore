@@ -14,6 +14,12 @@ public class PackageCheck : MonoBehaviour
 
     
     public Transform delSpawn;
+
+    public AudioSource aS;
+
+    public AudioClip accepted;
+
+    public AudioClip denied;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +44,8 @@ public class PackageCheck : MonoBehaviour
         if (oM.orderActive == false)
         {
             gM.packageNoti.text = "No Active Order";
+            aS.clip = denied;
+            aS.Play();
             Instantiate(package, delSpawn.position, delSpawn.rotation);
         }
         else
@@ -63,6 +71,8 @@ public class PackageCheck : MonoBehaviour
             if (orderList.Count == 0)
             {
                 gM.packageNoti.text = "Package Accepted";
+                aS.clip = accepted;
+                aS.Play();
                 gM.cash += oM.activeOrder.OrderPayInt;
                 oM.orderCompleted = true;
                 Destroy(package);
@@ -73,6 +83,8 @@ public class PackageCheck : MonoBehaviour
             }
             else
             {
+                aS.clip = denied;
+                aS.Play();
                 gM.packageNoti.text = "Package Denied";
                 Instantiate(package, delSpawn.position, delSpawn.rotation);
             }

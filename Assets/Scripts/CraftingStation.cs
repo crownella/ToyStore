@@ -35,28 +35,31 @@ public class CraftingStation : MonoBehaviour
     public GameObject eCar;
 
     public AudioSource aS;
-    public int craftTimer;
-    public int craftCutoff;
+    public bool spawnToy;
     public bool crafting;
+
+    public GameManager gM;
+    public GameObject gameObjectToSpawn;
     
     // Start is called before the first frame update
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        spawnToy = false;
         crafting = false;
+        gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (crafting)
+        if (crafting == false && spawnToy && !aS.isPlaying)
         {
-            craftTimer += 1;
+            Instantiate(gameObjectToSpawn, spawn.position, spawn.rotation);
+            spawnToy = false;
+            gameObjectToSpawn = null;
         }
-        else
-        {
-            craftTimer = 0;
-        }
+
         for (int x = 0; x < itemsList.Count; x++)
         {
             
@@ -133,6 +136,7 @@ public class CraftingStation : MonoBehaviour
         if (crafting == false)
         {
             crafting = true;
+            gM.crafting = false;
             aS.Play();
             removeSmallCubes = 1;
             print("CraftBlock");
@@ -155,13 +159,10 @@ public class CraftingStation : MonoBehaviour
                     }
 
                 }
-                while (craftTimer < craftCutoff)
-                {
-                   
-                }
-                Instantiate(block, spawn.position, spawn.rotation);
+
+                gameObjectToSpawn = block;
+                spawnToy = true;
                 crafting = false;
-                aS.Stop();
             }
         } 
     }
@@ -171,6 +172,7 @@ public class CraftingStation : MonoBehaviour
         if (crafting == false)
         {
             crafting = true;
+            gM.crafting = false;
             aS.Play();
             removeSmallCubes = 1;
             removeMiniCubes = 6;
@@ -213,14 +215,9 @@ public class CraftingStation : MonoBehaviour
                         break;
                     }
                 }
-
-                while (craftTimer < craftCutoff)
-                {
-                   
-                }
-                Instantiate(lego, spawn.position, spawn.rotation);
+                gameObjectToSpawn = lego;
+                spawnToy = true;
                 crafting = false;
-                aS.Stop();
             }
         }
         
@@ -231,6 +228,7 @@ public class CraftingStation : MonoBehaviour
         if (crafting == false)
         {
             crafting = true;
+            gM.crafting = false;
             aS.Play();
             removeSmallCubes = 1;
             removeMiniCubes = 4;
@@ -288,13 +286,9 @@ public class CraftingStation : MonoBehaviour
                         break;
                     }
                 }
-                while (craftTimer < craftCutoff)
-                {
-                   
-                }
-                Instantiate(car, spawn.position, spawn.rotation);
+                gameObjectToSpawn = car;
+                spawnToy = true;
                 crafting = false;
-                aS.Stop();
             }
         }
     }
@@ -304,6 +298,7 @@ public class CraftingStation : MonoBehaviour
         if (crafting == false)
         {
             crafting = true;
+            gM.crafting = false;
             aS.Play();
         }
         removeSmallCubes = 1;
@@ -374,14 +369,11 @@ public class CraftingStation : MonoBehaviour
                     break;
                 }
             }
-            while (craftTimer < craftCutoff)
-            {
-                   
-            }
-            Instantiate(eCar, spawn.position, spawn.rotation);
+            gameObjectToSpawn = eCar;
+            spawnToy = true;
             crafting = false;
-            aS.Stop();
         }
     }
+
     
 }

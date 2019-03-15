@@ -13,12 +13,15 @@ public class Cutter : MonoBehaviour
     public bool on;
     public int rotationSpeed;
 
-    public string tag;
+    //public string tag;
+
+    public AudioSource aS;
     // Start is called before the first frame update
     void Start()
     {
         buttonOff.SetActive(true);
         buttonOn.SetActive(false);
+        aS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,13 +29,18 @@ public class Cutter : MonoBehaviour
     {
         if (on)
         {
+            aS.Play();
             transform.Rotate(0,0,rotationSpeed);
+        }
+        else
+        {
+            aS.Stop();
         }
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (@on)
+        if (on)
         {
             if (other.gameObject.tag == "Cube")
             {

@@ -83,6 +83,15 @@ public class GameManager : MonoBehaviour
 
     public bool packageOpended = true;
 
+    public AudioSource packageAudio;
+    public AudioClip packageA;
+    
+
+    public AudioSource Door;
+    public AudioClip knock;
+   
+  
+
     // Start is called before the first frame update
     
     void Start()
@@ -153,6 +162,8 @@ public class GameManager : MonoBehaviour
         if (gameOver == true)
         {
             gameOvert.text = "Someones knocking at the door";
+            Door.clip = knock;
+            Door.Play();
         }else
         {
             gameOvert.text = "";
@@ -208,6 +219,9 @@ public class GameManager : MonoBehaviour
     }
     public void OpenPackage(GameObject package)
     {
+        packageAudio = package.GetComponent<AudioSource>();
+        packageAudio.clip = packageA;
+        packageAudio.Play();
         pM = package.GetComponent<PackageManager>();
         for(int i = 0; i < pM.itemsInPackage.Count; i++)
         {

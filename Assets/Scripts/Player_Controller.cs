@@ -17,18 +17,43 @@ public class Player_Controller : MonoBehaviour
     public GameManager gM;
 
     private float verticalLook = 0f;
+    public bool walking = false;
+    public bool playing = false;
+    public AudioSource aS;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         gM = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        
+        aS = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.D))
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+
+        if (walking && playing == false)
+        {
+            //aS.Play();
+            playing = true;
+        }
+        else if(playing)
+        {
+            playing = false;
+            //aS.Stop();
+        }
+        
         if (gM.computer == false)
         {
             yaw = Input.GetAxis("Mouse X") * sensX;

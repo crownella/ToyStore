@@ -21,6 +21,12 @@ public class RayCaster : MonoBehaviour
 
     public ObjectManager oM;
     public GameObject objectCasted;
+
+    public AudioSource packageAudioSource;
+    public AudioClip packageA;
+
+    public AudioSource DoorAudio;
+    public AudioClip open;
    
 
     //public MainSceneManager mM;
@@ -187,6 +193,7 @@ public class RayCaster : MonoBehaviour
                   }else if(mouseHit.transform.tag == "EmptyPackage")
                   {
                       oM = mouseHit.transform.GetComponent<ObjectManager>();
+                      packageAudioSource = mouseHit.transform.GetComponent<AudioSource>();
                       gM.message.text = ("Click To Pick Up, Press E to Close");
                       if (Input.GetMouseButtonDown(0))
                       { 
@@ -194,6 +201,8 @@ public class RayCaster : MonoBehaviour
                       }
                       if (Input.GetKeyDown(KeyCode.E))
                       {
+                          packageAudioSource.clip = packageA;
+                          packageAudioSource.Play();
                           objectCasted = mouseHit.transform.gameObject;
                           iPM = objectCasted.GetComponent<inPackageManager>();
                            pM = Instantiate(closedPackage, objectCasted.transform.position, objectCasted.transform.rotation).GetComponent<PackageManager>();
@@ -210,7 +219,8 @@ public class RayCaster : MonoBehaviour
                       gM.message.text = ("Click To Pick Up");
                       if (Input.GetMouseButtonDown(0))
                       {
-                          Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation);
+                          packageAudioSource = Instantiate(emptyPackage, packageSpawn.position, packageSpawn.rotation).GetComponent<AudioSource>();
+                          packageAudioSource.Play();
                       } 
                   }else if(mouseHit.transform.tag == "Computer")
                   {
@@ -235,6 +245,8 @@ public class RayCaster : MonoBehaviour
                           gM.message.text = ("Click To Open"); 
                           if (Input.GetMouseButtonDown(0))
                           {
+                              DoorAudio.clip = open;
+                              DoorAudio.Play();
                               if (gM.gameWon)
                               {
                                   SceneManager.LoadScene("Win");

@@ -36,6 +36,7 @@ TagManager:
   - Computer
   - ECar
   - Door
+  - Saw
   layers:
   - Default
   - TransparentFX

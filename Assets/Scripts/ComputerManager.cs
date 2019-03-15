@@ -74,6 +74,11 @@ public class ComputerManager : MonoBehaviour
     public Text order1t;
     public Text order2t;
     public Text pending;
+
+    public AudioSource aS;
+    public AudioClip click;
+    public AudioClip beep;
+   
     
     
     // Start is called before the first frame update
@@ -84,6 +89,7 @@ public class ComputerManager : MonoBehaviour
         nailsButton.gameObject.SetActive(false);
         gunPowButton.gameObject.SetActive(false);
         pending.text = "";
+        //aS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -260,6 +266,8 @@ public class ComputerManager : MonoBehaviour
 
     public void TurnOffComputer()
     {
+        aS.clip = beep;
+        aS.Play();
         browser = false;
         gM.computer = false;
         if (gM.gameWon || gM.gameLost)
@@ -270,6 +278,8 @@ public class ComputerManager : MonoBehaviour
 
     public void OpenCraftStore()
     {
+        aS.clip = click;
+        aS.Play();
         craftStore = true;
         orders = false;
         shopUpgrades = false;
@@ -277,6 +287,8 @@ public class ComputerManager : MonoBehaviour
 
     public void OpenOrders()
     {
+        aS.clip = click;
+        aS.Play();
         orders = true;
         craftStore = false;
         shopUpgrades = false;
@@ -284,6 +296,8 @@ public class ComputerManager : MonoBehaviour
 
     public void OpenShopUpgrades()
     {
+        aS.clip = click;
+        aS.Play();
         shopUpgrades = true;
         craftStore = false;
         orders = false;
@@ -291,6 +305,8 @@ public class ComputerManager : MonoBehaviour
 
     public void SelectCubes()
     {
+        aS.clip = click;
+        aS.Play();
         cubes = true;
         nails = false;
         gunPow = false;
@@ -299,6 +315,8 @@ public class ComputerManager : MonoBehaviour
 
     public void SelectNails()
     {
+        aS.clip = click;
+        aS.Play();
         cubes = false;
         nails = true;
         gunPow = false;
@@ -306,6 +324,8 @@ public class ComputerManager : MonoBehaviour
 
     public void SelectGunPow()
     {
+        aS.clip = click;
+        aS.Play();
         cubes = false;
         nails = false;
         gunPow = true;
@@ -313,18 +333,24 @@ public class ComputerManager : MonoBehaviour
 
     public void SelectCar()
     {
+        aS.clip = click;
+        aS.Play();
         carBlue = true;
         eCarBlue = false;
     }
 
     public void SelectECar()
     {
+        aS.clip = click;
+        aS.Play();
         eCarBlue = true;
         carBlue = false;
     }
 
     public void TurnOnBrowser()
     {
+        aS.clip = click;
+        aS.Play();
         browser = true;
         ResetPending();
         oM.clickedOrder = oM.Order1Spot;
@@ -332,11 +358,15 @@ public class ComputerManager : MonoBehaviour
 
     public void TurnOffBrowser()
     {
+        aS.clip = click;
+        aS.Play();
         browser = false;
     }
 
     public void OrderItems()
     {
+        aS.clip = click;
+        aS.Play();
         if (gM.itemOrdered == false)
         {
             if (cubes)
@@ -374,7 +404,8 @@ public class ComputerManager : MonoBehaviour
 
     public void UnlockBlueprint()
     {
-        print("clicked");
+        aS.clip = click;
+        aS.Play();
         if (eCarBlue)
         {
             if (gM.eCarUnlocked == false && gM.cash > eCarBluePrice)
@@ -394,16 +425,22 @@ public class ComputerManager : MonoBehaviour
 
     public void SelectOrder1()
     {
+        aS.clip = click;
+        aS.Play();
         oM.SelectOrder1(pending);
     }
 
     public void SelectOrder2()
     {
+        aS.clip = click;
+        aS.Play();
         oM.SelectOrder2(pending);
     }
 
     public void SelectOrder()
     {
+        aS.clip = click;
+        aS.Play();
         oM.SelectOrder(pending);
     }
 
