@@ -78,6 +78,20 @@ public class ComputerManager : MonoBehaviour
     public AudioSource aS;
     public AudioClip click;
     public AudioClip beep;
+    
+    //tutoirla
+    public bool bowserTut = true;
+    public bool cashTut = true;
+    public bool orderTut = true;
+    public bool craftingTut = true;
+    public bool upgradeTut = true;
+    public GameObject bowserTutObj;
+    public GameObject cashTutObj;
+    public GameObject orderTutObj;
+    public GameObject craftingTutObj;
+    public GameObject upgradeTutObj;
+    
+    
    
     
     
@@ -89,12 +103,44 @@ public class ComputerManager : MonoBehaviour
         nailsButton.gameObject.SetActive(false);
         gunPowButton.gameObject.SetActive(false);
         pending.text = "";
-        //aS = GetComponent<AudioSource>();
+        //tutorial
+        bowserTutObj.SetActive(true);
+        cashTutObj.SetActive(true);
+        orderTutObj.SetActive(true);
+        craftingTutObj.SetActive(true);
+        upgradeTutObj.SetActive(true);
+        bowserTut = true;
+        cashTut = true;
+        orderTut = true;
+        craftingTut = true;
+        upgradeTut = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //tutotial
+        if (!bowserTut)
+        {
+            bowserTutObj.SetActive(false);
+        }
+        if (!cashTut)
+        {
+            cashTutObj.SetActive(false);
+        }
+        if (!orderTut)
+        {
+            orderTutObj.SetActive(false);
+        }
+        if (!craftingTut)
+        {
+            craftingTutObj.SetActive(false);
+        }
+        if (!upgradeTut)
+        {
+            upgradeTutObj.SetActive(false);
+        }
+        
         //end game conditons
         if (oM.completedOrders.Contains(oM.order4))
         {
@@ -266,10 +312,15 @@ public class ComputerManager : MonoBehaviour
 
     public void TurnOffComputer()
     {
-        aS.clip = beep;
-        aS.Play();
+        //aS.clip = beep;
+        //aS.Play();
         browser = false;
         gM.computer = false;
+        craftingTut = false;
+        orderTut = false;
+        upgradeTut = false;
+        cashTut = false;
+        
         if (gM.gameWon || gM.gameLost)
         {
             gM.gameOver = true;
@@ -354,6 +405,7 @@ public class ComputerManager : MonoBehaviour
         browser = true;
         ResetPending();
         oM.clickedOrder = oM.Order1Spot;
+        bowserTut = false;
     }
 
     public void TurnOffBrowser()

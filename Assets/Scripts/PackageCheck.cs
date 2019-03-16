@@ -88,7 +88,7 @@ public class PackageCheck : MonoBehaviour
                 aS.clip = denied;
                 aS.Play();
                 gM.packageNoti.text = "Package Denied";
-                Instantiate(package, delSpawn.position, delSpawn.rotation);
+                package.transform.position = delSpawn.position;
             }
         }
         

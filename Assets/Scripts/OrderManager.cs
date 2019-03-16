@@ -75,11 +75,13 @@ public class OrderManager : MonoBehaviour
     public List<GameObject> order3List = new List<GameObject>();
     public List<GameObject> order4List = new List<GameObject>();
     public List<GameObject> order5List = new List<GameObject>();
+    public List<GameObject> order6List = new List<GameObject>();
     public Order order1;                                                   //And here
     public Order order2;
     public Order order3;
     public Order order4;
     public Order order5;
+    public Order order6;
     
     void Start()
     {
@@ -91,7 +93,7 @@ public class OrderManager : MonoBehaviour
         order3 = new Order(("John Gimme"), ("Charles"),("Can you send a car for my sons birthday? He turns 1 in four days."),("1 Car"), ("14$"),14, 3);
         order4 = new Order(("Anonymous"), ("Nowhere"),("I need one Explosive Car. By tomorrow."),("1 Explosive Car"), ("100$"),100, 4);
         order5 = new Order(("Anonymous"), ("Capital"),("Ive heard you make great toys. I need 1 block, 1 Lego, and 1 Car of the highest quality."),("1 Block 1 Lego 1 Car"), ("200$"),200, 5);
-        
+        order6 = new Order("Carly Bengel", "Jacksonville","Im throwing a lego party! Send 10 Legos please!","10 Legos","30$", 30,6);
         
         //make master order list                                                       <<<<Then add order here
         allOrders.Add(order1);
@@ -99,6 +101,7 @@ public class OrderManager : MonoBehaviour
         allOrders.Add(order3);
         allOrders.Add(order4);
         allOrders.Add(order5);
+        allOrders.Add(order6);
         
         //make lists for every order                                                   <<<<Then add  order here
         order1List.Add(Block);
@@ -115,6 +118,17 @@ public class OrderManager : MonoBehaviour
         order5List.Add(Block);
         order5List.Add(Lego);
         order5List.Add(Car);
+        
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
+        order6List.Add(Lego);
 
         currentOrderNumber = 1;
         gameFinished = false;
@@ -171,9 +185,14 @@ public class OrderManager : MonoBehaviour
             receivedOrders.Add(order4);
         }
 
-        if (completedOrders.Count > 2 && receivedOrders.Contains(order5) == false)
+        if (completedOrders.Count > 2 && receivedOrders.Contains(order5) == false && completedOrders.Contains(order5) == false)
         {
             receivedOrders.Add(order5);
+        }
+
+        if (completedOrders.Count > 3 && receivedOrders.Contains(order6) == false && completedOrders.Contains(order6) == false)
+        {
+            receivedOrders.Add(order6);
         }
   
     }
@@ -195,6 +214,9 @@ public class OrderManager : MonoBehaviour
         }else if(oN == 5)
         {
             return order5List;
+        }else if(oN == 6)
+        {
+            return order6List;
         }else
         {
             return null;
