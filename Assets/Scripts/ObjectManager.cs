@@ -41,6 +41,7 @@ public class ObjectManager : MonoBehaviour
         }
         else if (other.transform.tag == "Surface")
         {
+            print("surface");
             aS.clip = drop;
             aS.Play();
         }else if (other.transform.tag == "Saw")

@@ -20,6 +20,8 @@ public class PackageCheck : MonoBehaviour
     public AudioClip accepted;
 
     public AudioClip denied;
+
+    public GameObject newPackage;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PackageCheck : MonoBehaviour
             gM.packageNoti.text = "No Active Order";
             aS.clip = denied;
             aS.Play();
-            Instantiate(package, delSpawn.position, delSpawn.rotation);
+            package.transform.position = delSpawn.position;
         }
         else
         {

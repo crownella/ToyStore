@@ -29,12 +29,12 @@ public class Cutter : MonoBehaviour
     {
         if (on)
         {
-            aS.Play();
+            
             transform.Rotate(0,0,rotationSpeed);
         }
         else
         {
-            aS.Stop();
+            
         }
     }
 
@@ -71,6 +71,7 @@ public class Cutter : MonoBehaviour
         buttonOff.SetActive(false);
         buttonOn.SetActive(true);
         on = true;
+        aS.Play();
     }
 
     public void TurnOffSaw()
@@ -78,6 +79,7 @@ public class Cutter : MonoBehaviour
         buttonOff.SetActive(true);
         buttonOn.SetActive(false);
         @on = false;
+        aS.Stop();
     }
 
     

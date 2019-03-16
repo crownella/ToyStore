@@ -315,6 +315,9 @@ MonoBehaviour:
   onTable: 0
   inPackage: 0
   beingHeld: 0
+  aS: {fileID: 0}
+  drop: {fileID: 8300000, guid: 0dcd567ebce1c9e48ae99baf3b25f30a, type: 3}
+  smash: {fileID: 8300000, guid: 1c5d576e82c7937488356337d639ead2, type: 3}
 --- !u!114 &2802274600439722380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,9 +350,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -384,7 +387,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

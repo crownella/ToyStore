@@ -21,13 +21,13 @@ public class OutBelt : MonoBehaviour
     {
         if (other.transform.tag == "Package")
         {
-            aS.Play();
+            if (!aS.isPlaying)
+            {
+                aS.Play();
+            }
+
             other.transform.position += Vector3.back * Time.deltaTime;
         }
     }
 
-    private void OnCollisionExit(Collision other)
-    {
-        aS.Stop();
-    }
 }

@@ -27,6 +27,8 @@ public class RayCaster : MonoBehaviour
 
     public AudioSource DoorAudio;
     public AudioClip open;
+
+    public bool loadEnd = false;
    
 
     //public MainSceneManager mM;
@@ -43,61 +45,17 @@ public class RayCaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        Ray myRay = new Ray(this.transform.position, Vector3.down);
-        
-        Debug.DrawRay(myRay.origin, new Vector3(0 ,-rayDis,0));
-
-        RaycastHit myHit;
-
-        if (Physics.Raycast(myRay.origin, myRay.direction, out myHit, rayDis))
+        if (!DoorAudio.isPlaying && loadEnd)
         {
-            print(myHit.rigidbody.transform.name);
-        }
-        
-
-        Ray ObjectRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        //Debug.DrawRay(ObjectRay.origin, ObjectRay.direction * rayDis);
-        
-        //endOfRay = new Vector3(mouseRay.direction.x, mouseRay.direction.y, mouseRay.direction.z);
-
-        RaycastHit objectHit;
-
-        if (Physics.Raycast(ObjectRay.origin, ObjectRay.direction, out objectHit, rayDis))
-        {
-
-            if (objectHit.transform.tag == "Surface")
+            gM.locked = false;
+            if (gM.gameWon)
             {
-                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y + placementMod,objectHit.point.z);
-                
-            }else if(objectHit.transform.tag == "WallNorth")
+                SceneManager.LoadScene("Win");
+            }else if (gM.gameLost)
             {
-                placeHolder.transform.position = new Vector3(objectHit.point.x + placementMod,objectHit.point.y,objectHit.point.z);
-            }
-            else if(objectHit.transform.tag == "WallSouth")
-            {
-                placeHolder.transform.position = new Vector3(objectHit.point.x - placementMod,objectHit.point.y,objectHit.point.z);
-            }else if(objectHit.transform.tag == "WallWest")
-            {
-                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y,objectHit.point.z + placementMod);
-            }else if(objectHit.transform.tag == "WallEast")
-            {
-                placeHolder.transform.position = new Vector3(objectHit.point.x,objectHit.point.y,objectHit.point.z - placementMod);
+                SceneManager.LoadScene("Lose");
             }
         }
-        else
-        {
-            placeHolder.transform.position = objectPosition.position;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            //Transform newCube = Instantiate(cube, cube.transform.position, Quaternion.Euler(0,0,0)); //spawns cube when u click moue at where ever the cube is
-        }
-        */
-        
-        //Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Ray MouseRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward * mouseRayDis);
         
         Debug.DrawRay(MouseRay.origin, MouseRay.direction * mouseRayDis);
@@ -129,35 +87,8 @@ public class RayCaster : MonoBehaviour
                 }
                 else
                 {
-                    //print(mouseHit.transform.name);
                     if (mouseHit.transform.tag == "Cube" || mouseHit.transform.tag == "MiniCube" || mouseHit.transform.tag == "SmallCube" || mouseHit.transform.tag == "Lego" || mouseHit.transform.tag == "Block" || mouseHit.transform.tag == "GunPow" || mouseHit.transform.tag == "Nails" || mouseHit.transform.tag == "Car" || mouseHit.transform.tag == "ECar" )
                   {
-                      /*if (gM.holdingObject == false ||
-                          (gM.holdingObject && gM.objectBeingHeld == mouseHit.transform.gameObject))
-                      if(gM.crafting == false)
-                      {
-                          pUS = mouseHit.transform.GetComponent<PickUpScript>();
-                          if (pUS.holding == false && gM.holdingObject == false)
-                          {
-                              gM.message.text = ("Click To Pick Up");
-                          }
-                          else
-                          {
-                              gM.message.text = ("Click To Drop");
-                          }
-                          if (Input.GetMouseButtonDown(0))
-                          {
-                              if (pUS.holding == false)
-                              {
-                                  pUS.holding = true;
-                              }
-                              else
-                              {
-                                  pUS.holding = false;
-                              }
-                          }
-                      }
-                      */
                       oM = mouseHit.transform.GetComponent<ObjectManager>();
                       gM.message.text = ("Click To Pick Up");
                       if (Input.GetMouseButtonDown(0))
@@ -247,13 +178,8 @@ public class RayCaster : MonoBehaviour
                           {
                               DoorAudio.clip = open;
                               DoorAudio.Play();
-                              if (gM.gameWon)
-                              {
-                                  SceneManager.LoadScene("Win");
-                              }else if (gM.gameLost)
-                              {
-                                  SceneManager.LoadScene("Lose");
-                              }     
+                              loadEnd = true;
+
                           } 
                       }
                       else

@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
 
     public AudioSource Door;
     public AudioClip knock;
+    public bool knocked;
+
+    public CraftingStation cS;
    
   
 
@@ -163,14 +166,18 @@ public class GameManager : MonoBehaviour
         {
             gameOvert.text = "Someones knocking at the door";
             Door.clip = knock;
-            Door.Play();
+            if (!knocked)
+            {
+                Door.Play();
+                knocked = true;
+            }
         }else
         {
             gameOvert.text = "";
         }
         
         //crafing
-        if (Input.GetKeyDown(KeyCode.C) && computer == false)
+        if (Input.GetKeyDown(KeyCode.C) && !computer && !cS.crafting)
         {
             if (crafting)
             {

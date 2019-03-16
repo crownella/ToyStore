@@ -20,6 +20,7 @@
           <e p="PickUpScript.cs" t="Include" />
           <e p="Player_Controller.cs" t="Include" />
           <e p="RayCaster.cs" t="Include" />
+          <e p="Restart.cs" t="Include" />
           <e p="TitleScreen.cs" t="Include" />
           <e p="Trash.cs" t="Include" />
         </e>

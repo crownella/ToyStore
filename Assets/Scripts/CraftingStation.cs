@@ -53,11 +53,12 @@ public class CraftingStation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (crafting == false && spawnToy && !aS.isPlaying)
+        if (spawnToy && !aS.isPlaying)
         {
             Instantiate(gameObjectToSpawn, spawn.position, spawn.rotation);
             spawnToy = false;
             gameObjectToSpawn = null;
+            crafting = false;
         }
 
         for (int x = 0; x < itemsList.Count; x++)
@@ -133,7 +134,7 @@ public class CraftingStation : MonoBehaviour
 
     public void CraftBlock()
     {
-        if (crafting == false)
+        if (crafting == false && smallCubes >= 1)
         {
             crafting = true;
             gM.crafting = false;
@@ -157,19 +158,16 @@ public class CraftingStation : MonoBehaviour
                         removeSmallCubes = 0;
                         break;
                     }
-
                 }
-
                 gameObjectToSpawn = block;
                 spawnToy = true;
-                crafting = false;
             }
         } 
     }
 
     public void CraftLego()
     {
-        if (crafting == false)
+        if (crafting == false && smallCubes >= 1 && miniCubes >=6)
         {
             crafting = true;
             gM.crafting = false;
@@ -217,7 +215,6 @@ public class CraftingStation : MonoBehaviour
                 }
                 gameObjectToSpawn = lego;
                 spawnToy = true;
-                crafting = false;
             }
         }
         
@@ -225,7 +222,7 @@ public class CraftingStation : MonoBehaviour
 
     public void CraftCar()
     {
-        if (crafting == false)
+        if (crafting == false && smallCubes >= 1 && miniCubes >= 4 && nails >= 1)
         {
             crafting = true;
             gM.crafting = false;
@@ -288,20 +285,18 @@ public class CraftingStation : MonoBehaviour
                 }
                 gameObjectToSpawn = car;
                 spawnToy = true;
-                crafting = false;
             }
         }
     }
 
     public void CraftECar()
     {
-        if (crafting == false)
+        if (crafting == false && smallCubes >= 1 && miniCubes >= 4 && nails >= 1 && gunPow >= 1)
         {
             crafting = true;
             gM.crafting = false;
             aS.Play();
-        }
-        removeSmallCubes = 1;
+            removeSmallCubes = 1;
         removeMiniCubes = 4;
         removeNails = 1;
         removeGunPow = 1;
@@ -371,9 +366,7 @@ public class CraftingStation : MonoBehaviour
             }
             gameObjectToSpawn = eCar;
             spawnToy = true;
-            crafting = false;
         }
-    }
-
-    
+        }
+    }  
 }
